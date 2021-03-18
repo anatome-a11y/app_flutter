@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 
+import 'script_home_states.dart';
 import 'script_home_store.dart';
 
 class ScriptHomePage extends StatefulWidget {
@@ -20,20 +21,30 @@ class ScriptHomePageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: ScopedBuilder<ScriptHomeStore, Exception, ScriptHomeState>(
+        store: store,
+        onState: (_, state) => state is ScriptHomeExamState
+            ? ExamIntroWidget(exam: state.exam)
+            : Center(
+                child: Text(
+                  'Clique no botão para iniciar o exame',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+        onError: (_, error) => Text('error'),
+        onLoading: (_) => Center(
+          child: CircularProgressIndicator(),
         ),
-        body: ScopedBuilder<ScriptHomeStore, Exception, Exam>(
-          store: store,
-          onState: (_, exam) => ExamIntroWidget(exam: exam),
-          onError: (_, error) => Text('error'),
-          onLoading: (_) => CircularProgressIndicator(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.swap_horiz),
-          onPressed: () {
-            store.initExam();
-          },
-        ));
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.swap_horiz),
+        onPressed: () {
+          store.initExam();
+        },
+      ),
+    );
   }
 }

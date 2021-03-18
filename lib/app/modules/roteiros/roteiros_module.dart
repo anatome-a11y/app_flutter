@@ -1,9 +1,8 @@
 import 'package:app_flutter/app/modules/roteiros/domain/usecases/init_exam.dart';
-import 'package:app_flutter/app/modules/roteiros/presenter/pages/script_home_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter/material.dart';
 
-import 'presenter/pages/script_home_store.dart';
+import 'presenter/pages/script_home/script_home_page.dart';
+import 'presenter/pages/script_home/script_home_store.dart';
 
 class RoteirosModule extends Module {
   @override

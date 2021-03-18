@@ -1,4 +1,4 @@
-import 'package:app_flutter/app/modules/roteiros/presenter/pages/script_home_page.dart';
+import 'package:app_flutter/app/modules/roteiros/presenter/pages/script_home/script_home_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_modular_test/flutter_modular_test.dart';
 
