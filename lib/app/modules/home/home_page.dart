@@ -1,3 +1,5 @@
+import 'package:app_flutter/app/modules/roteiros/domain/entities/script.dart';
+import 'package:app_flutter/app/modules/roteiros/presenter/components/script_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
@@ -16,22 +18,11 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Counter'),
+        title: Text('Anatome App'),
       ),
       body: ScopedBuilder<HomeStore, Exception, int>(
         store: store,
-        onState: (_, counter) {
-          return Padding(
-            padding: EdgeInsets.all(10),
-            child: Text('$counter'),
-          );
-        },
-        onError: (context, error) => Center(
-          child: Text(
-            'Too many clicks',
-            style: TextStyle(color: Colors.red),
-          ),
-        ),
+        onState: (_, counter) => AnatomeHome(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -39,6 +30,38 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         },
         child: Icon(Icons.add),
       ),
+    );
+  }
+}
+
+class AnatomeHome extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 20,
+        ),
+        Text(
+          'Você está em roteiros',
+          style: TextStyle(fontSize: 30),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: 200),
+          child: ListView.builder(
+            itemCount: 1,
+            itemBuilder: (context, i) => ScriptCardWidget(
+              script: Script(
+                name: 'Sistema esquelético',
+                discipline: 'Biomedicina',
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
