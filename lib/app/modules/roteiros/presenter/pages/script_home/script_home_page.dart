@@ -11,7 +11,7 @@ import 'script_home_store.dart';
 
 class ScriptHomePage extends StatefulWidget {
   final String title;
-  const ScriptHomePage({Key? key, this.title = "ScriptHomePage"})
+  const ScriptHomePage({Key? key, this.title = "Avaliação de roteiro"})
       : super(key: key);
   @override
   ScriptHomePageState createState() => ScriptHomePageState();
@@ -52,15 +52,18 @@ class NotStartedExam extends StatelessWidget {
         Center(
           child: Text(
             'Clique no botão para iniciar o exame',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 25),
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 40,
         ),
-        StartExamFormWidget(initExam: (isTeorico, isLocalizar) {
-          store.initExam(isTeorico, isLocalizar);
-        })
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: StartExamFormWidget(initExam: (isTeorico, isLocalizar) {
+            store.initExam(isTeorico, isLocalizar);
+          }),
+        )
       ],
     );
   }
