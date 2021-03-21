@@ -1,6 +1,7 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam.dart';
 import 'package:app_flutter/app/modules/roteiros/domain/usecases/init_exam.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/components/exam_intro_widget.dart';
+import 'package:app_flutter/app/modules/roteiros/presenter/components/start_exam_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
@@ -10,7 +11,7 @@ import 'script_home_store.dart';
 
 class ScriptHomePage extends StatefulWidget {
   final String title;
-  const ScriptHomePage({Key? key, this.title = "ScriptHomePage"})
+  const ScriptHomePage({Key? key, this.title = "Avaliação de roteiro"})
       : super(key: key);
   @override
   ScriptHomePageState createState() => ScriptHomePageState();
@@ -28,23 +29,42 @@ class ScriptHomePageState
         store: store,
         onState: (_, state) => state is ScriptHomeExamState
             ? ExamIntroWidget(exam: state.exam)
-            : Center(
-                child: Text(
-                  'Clique no botão para iniciar o exame',
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
+            : NotStartedExam(store: store),
         onError: (_, error) => Text('error'),
         onLoading: (_) => Center(
           child: CircularProgressIndicator(),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.swap_horiz),
-        onPressed: () {
-          store.initExam();
-        },
-      ),
+    );
+  }
+}
+
+class NotStartedExam extends StatelessWidget {
+  final ScriptHomeStore store;
+
+  const NotStartedExam({Key? key, required this.store}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Center(
+          child: Text(
+            'Clique no botão para iniciar o exame',
+            style: TextStyle(fontSize: 25),
+          ),
+        ),
+        SizedBox(
+          height: 40,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: StartExamFormWidget(initExam: (isTeorico, isLocalizar) {
+            store.initExam(isTeorico, isLocalizar);
+          }),
+        )
+      ],
     );
   }
 }

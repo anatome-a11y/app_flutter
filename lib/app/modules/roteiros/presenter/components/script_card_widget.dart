@@ -24,13 +24,13 @@ class ScriptCardWidget extends StatelessWidget {
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: Text(
+            //     'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
+            //     style: TextStyle(color: Colors.black.withOpacity(0.6)),
+            //   ),
+            // ),
           ],
         ),
       ),

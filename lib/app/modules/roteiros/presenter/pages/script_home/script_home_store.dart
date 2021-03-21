@@ -7,21 +7,24 @@ import 'script_home_states.dart';
 class ScriptHomeStore extends NotifierStore<Exception, ScriptHomeState> {
   ScriptHomeStore() : super(ScriptHomeEmptyState());
 
-  initExam() async {
-    final IInitExam initExam = Modular.get<IInitExam>();
+  initExam(isTeorico, isLocalizar) async {
+    print('init exam $isTeorico $isLocalizar');
 
-    setLoading(true);
+    Modular.to.pushNamed('exam');
+    // final IInitExam initExam = Modular.get<IInitExam>();
 
-    await Future.delayed(Duration(seconds: 2));
-    final value = await initExam();
+    // setLoading(true);
 
-    value.fold(
-      (l) => {},
-      (exam) {
-        update(ScriptHomeExamState(exam));
-      },
-    );
+    // await Future.delayed(Duration(seconds: 2));
+    // final value = await initExam();
 
-    setLoading(false);
+    // value.fold(
+    //   (l) => {},
+    //   (exam) {
+    //     update(ScriptHomeExamState(exam));
+    //   },
+    // );
+
+    // setLoading(false);
   }
 }

@@ -38,12 +38,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         store: store,
         onState: (_, counter) => AnatomeHome(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          store.increment();
-        },
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
@@ -67,10 +61,13 @@ class AnatomeHome extends StatelessWidget {
           constraints: BoxConstraints(maxHeight: 200),
           child: ListView.builder(
             itemCount: 1,
-            itemBuilder: (context, i) => ScriptCardWidget(
-              script: Script(
-                name: 'Sistema esquelético',
-                discipline: 'Biomedicina',
+            itemBuilder: (context, i) => Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ScriptCardWidget(
+                script: Script(
+                  name: 'Sistema esquelético',
+                  discipline: 'Biomedicina',
+                ),
               ),
             ),
           ),
