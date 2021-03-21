@@ -24,14 +24,8 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Tipo de conteúdo'),
-        Text('( ) Teórico'),
-        Text('( ) Prático'),
-        Text('Sentido de identificação'),
-        Text('( ) ...'),
-        Text('( ) ...'),
         RadioListTile(
-            title: const Text('Teorico'),
+            title: const Text('Conteúdo Teorico'),
             value: isTeorico,
             groupValue: isTeorico,
             onChanged: (bool? value) {
@@ -39,24 +33,15 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
                 isTeorico = true;
               });
             }),
-        SwitchListTile(
-          title: const Text('Conteúdo teórico'),
-          value: isTeorico,
-          onChanged: (bool value) {
-            setState(() {
-              isTeorico = value;
-            });
-          },
-        ),
-        SwitchListTile(
-          title: const Text('Localizar peças'),
-          value: isLocalizar,
-          onChanged: (bool value) {
-            setState(() {
-              isLocalizar = value;
-            });
-          },
-        ),
+        RadioListTile(
+            title: const Text('Localizar peças'),
+            value: isLocalizar,
+            groupValue: isLocalizar,
+            onChanged: (bool? value) {
+              setState(() {
+                isLocalizar = true;
+              });
+            }),
         SizedBox(
           height: 50,
         ),
