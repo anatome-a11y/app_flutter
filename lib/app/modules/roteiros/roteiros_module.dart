@@ -1,3 +1,4 @@
+import 'package:app_flutter/app/modules/roteiros/infra/repositories/exam_repository.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/pages/exam/exam_store.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/pages/exam/exam_page.dart';
 import 'package:app_flutter/app/modules/roteiros/domain/usecases/init_exam.dart';
@@ -9,10 +10,11 @@ import 'presenter/pages/script_home/script_home_store.dart';
 class RoteirosModule extends Module {
   @override
   final List<Bind> binds = [
+    Bind.lazySingleton((i) => ExamRepository()),
     Bind.lazySingleton((i) => ExamStore()),
     Bind.lazySingleton((i) => ExamStore()),
     Bind.lazySingleton((i) => ScriptHomeStore()),
-    Bind.lazySingleton((i) => InitExam()),
+    Bind.lazySingleton((i) => InitExam(i.get<ExamRepository>())),
   ];
 
   @override
