@@ -24,13 +24,41 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Tipo de conteúdo'),
+        /*Text('Tipo de conteúdo'),
         Text('( ) Teórico'),
         Text('( ) Prático'),
         Text('Sentido de identificação'),
         Text('( ) ...'),
-        Text('( ) ...'),
-        SwitchListTile(
+        Text('( ) ...'),*/
+        ListTile(
+          title: const Text('Conteúdo Teórico'),
+          leading: Radio<bool>(
+            value: isTeorico,
+            groupValue: true,
+            onChanged: (bool? value) {
+              setState(() {
+                isTeorico = true;
+                isLocalizar = false;
+              });
+            },
+          ),
+        ),
+        ListTile(
+          title: const Text('Localizar peças'),
+          leading: Radio<bool>(
+            value: isLocalizar,
+            groupValue: true,
+            onChanged: (bool? value) {
+              setState(() {
+                isLocalizar = true;
+                isTeorico = false;
+              });
+            },
+          ),
+        ),
+
+        
+        /*SwitchListTile(
           title: const Text('Conteúdo teórico'),
           value: isTeorico,
           onChanged: (bool value) {
@@ -50,7 +78,7 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
         ),
         SizedBox(
           height: 50,
-        ),
+        ),*/
         Center(
           child: ElevatedButton(
             onPressed: () {
