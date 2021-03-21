@@ -27,9 +27,7 @@ class ScriptHomePageState
       ),
       body: ScopedBuilder<ScriptHomeStore, Exception, ScriptHomeState>(
         store: store,
-        onState: (_, state) => state is ScriptHomeExamState
-            ? ExamIntroWidget(exam: state.exam)
-            : NotStartedExam(store: store),
+        onState: (_, state) => NotStartedExam(store: store),
         onError: (_, error) => Text('error'),
         onLoading: (_) => Center(
           child: CircularProgressIndicator(),
@@ -46,25 +44,26 @@ class NotStartedExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Text(
-            'Clique no botão para iniciar o exame',
-            style: TextStyle(fontSize: 25),
-          ),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+            Center(
+              child: Text(
+                'Clique no botão para iniciar o exame',
+                style: TextStyle(fontSize: 25),
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            StartExamFormWidget(initExam: (isTeorico, isLocalizar) {
+              store.initExam(isTeorico, isLocalizar);
+            })
+          ],
         ),
-        SizedBox(
-          height: 40,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: StartExamFormWidget(initExam: (isTeorico, isLocalizar) {
-            store.initExam(isTeorico, isLocalizar);
-          }),
-        )
-      ],
+      ),
     );
   }
 }

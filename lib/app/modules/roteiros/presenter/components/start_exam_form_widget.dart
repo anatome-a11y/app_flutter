@@ -77,9 +77,15 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
             onPressed: () {
               initExam(isTeorico, isLocalizar);
             },
-            child: Text(
-              'Iniciar exame',
-              style: TextStyle(fontSize: 20),
+            child: Container(
+              width: double.infinity,
+              height: 50,
+              child: Center(
+                child: Text(
+                  'Iniciar exame',
+                  style: TextStyle(fontSize: 22),
+                ),
+              ),
             ),
           ),
         ),

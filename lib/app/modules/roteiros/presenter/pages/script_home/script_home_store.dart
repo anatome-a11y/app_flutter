@@ -5,26 +5,14 @@ import 'package:flutter_triple/flutter_triple.dart';
 import 'script_home_states.dart';
 
 class ScriptHomeStore extends NotifierStore<Exception, ScriptHomeState> {
-  ScriptHomeStore() : super(ScriptHomeEmptyState());
+  ScriptHomeStore() : super(ScriptHomeState());
 
   initExam(isTeorico, isLocalizar) async {
     print('init exam $isTeorico $isLocalizar');
 
-    Modular.to.pushNamed('exam');
-    // final IInitExam initExam = Modular.get<IInitExam>();
-
-    // setLoading(true);
-
-    // await Future.delayed(Duration(seconds: 2));
-    // final value = await initExam();
-
-    // value.fold(
-    //   (l) => {},
-    //   (exam) {
-    //     update(ScriptHomeExamState(exam));
-    //   },
-    // );
-
-    // setLoading(false);
+    Modular.to.pushNamed(
+      'exam',
+      arguments: {isTeorico, isLocalizar},
+    );
   }
 }
