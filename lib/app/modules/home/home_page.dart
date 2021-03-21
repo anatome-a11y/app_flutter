@@ -1,5 +1,6 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/script.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/components/script_card_widget.dart';
+import 'package:app_flutter/app/modules/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
@@ -19,6 +20,19 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Anatome App'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.settings
+            ), 
+            onPressed: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => Settings())
+              );
+            }
+          )
+        ],
       ),
       body: ScopedBuilder<HomeStore, Exception, int>(
         store: store,
