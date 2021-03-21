@@ -7,7 +7,9 @@ import 'script_home_states.dart';
 class ScriptHomeStore extends NotifierStore<Exception, ScriptHomeState> {
   ScriptHomeStore() : super(ScriptHomeEmptyState());
 
-  initExam() async {
+  initExam(isTeorico, isLocalizar) async {
+    print('init exam $isTeorico $isLocalizar');
+
     final IInitExam initExam = Modular.get<IInitExam>();
 
     setLoading(true);
