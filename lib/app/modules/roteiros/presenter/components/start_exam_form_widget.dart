@@ -29,6 +29,7 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
         Text('( ) Prático'),
         Text('Sentido de identificação'),
         Text('( ) ...'),
+<<<<<<< HEAD
         Text('( ) ...'),*/
         ListTile(
           title: const Text('Conteúdo Teórico'),
@@ -56,8 +57,6 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
             },
           ),
         ),
-
-        
         /*SwitchListTile(
           title: const Text('Conteúdo teórico'),
           value: isTeorico,
