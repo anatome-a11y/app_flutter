@@ -25,6 +25,7 @@ class _AppWidgetState extends ModularState<AppWidget, AppStore> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.comfortable,
+          scaffoldBackgroundColor: Colors.grey.shade300,
           // platform: TargetPlatform.iOS,
           brightness: state.isDarkTheme ? Brightness.dark : Brightness.light,
         ),
