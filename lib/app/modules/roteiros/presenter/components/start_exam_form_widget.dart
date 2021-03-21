@@ -24,26 +24,31 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RadioListTile(
-            title: const Text('Conteúdo Teorico'),
+        ListTile(
+          title: const Text('Conteúdo Teórico'),
+          leading: Radio<bool>(
             value: isTeorico,
-            groupValue: isTeorico,
+            groupValue: true,
             onChanged: (bool? value) {
               setState(() {
                 isTeorico = true;
+                isLocalizar = false;
               });
-            }),
-        RadioListTile(
-            title: const Text('Localizar peças'),
+            },
+          ),
+        ),
+        ListTile(
+          title: const Text('Localizar peças'),
+          leading: Radio<bool>(
             value: isLocalizar,
-            groupValue: isLocalizar,
+            groupValue: true,
             onChanged: (bool? value) {
               setState(() {
                 isLocalizar = true;
+                isTeorico = false;
               });
-            }),
-        SizedBox(
-          height: 50,
+            },
+          ),
         ),
         Center(
           child: ElevatedButton(
