@@ -30,6 +30,15 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
         Text('Sentido de identificação'),
         Text('( ) ...'),
         Text('( ) ...'),
+        RadioListTile(
+            title: const Text('Teorico'),
+            value: isTeorico,
+            groupValue: isTeorico,
+            onChanged: (bool? value) {
+              setState(() {
+                isTeorico = true;
+              });
+            }),
         SwitchListTile(
           title: const Text('Conteúdo teórico'),
           value: isTeorico,
