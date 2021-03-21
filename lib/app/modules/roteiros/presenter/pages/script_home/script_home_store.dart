@@ -10,20 +10,21 @@ class ScriptHomeStore extends NotifierStore<Exception, ScriptHomeState> {
   initExam(isTeorico, isLocalizar) async {
     print('init exam $isTeorico $isLocalizar');
 
-    final IInitExam initExam = Modular.get<IInitExam>();
+    Modular.to.pushNamed('exam');
+    // final IInitExam initExam = Modular.get<IInitExam>();
 
-    setLoading(true);
+    // setLoading(true);
 
-    await Future.delayed(Duration(seconds: 2));
-    final value = await initExam();
+    // await Future.delayed(Duration(seconds: 2));
+    // final value = await initExam();
 
-    value.fold(
-      (l) => {},
-      (exam) {
-        update(ScriptHomeExamState(exam));
-      },
-    );
+    // value.fold(
+    //   (l) => {},
+    //   (exam) {
+    //     update(ScriptHomeExamState(exam));
+    //   },
+    // );
 
-    setLoading(false);
+    // setLoading(false);
   }
 }
