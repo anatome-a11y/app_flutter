@@ -44,26 +44,39 @@ class NotStartedExam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            Center(
-              child: Text(
-                'Clique no botão para iniciar o exame',
-                style: TextStyle(fontSize: 25),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
+            ),
+            child: IntrinsicHeight(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        'Clique no botão para iniciar o exame',
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Expanded(
+                      child: StartExamFormWidget(initExam: (mode) {
+                        store.initExam(mode);
+                      }),
+                    )
+                  ],
+                ),
               ),
             ),
-            SizedBox(
-              height: 40,
-            ),
-            StartExamFormWidget(initExam: (mode) {
-              store.initExam(mode);
-            })
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -26,6 +26,7 @@ class _ExamWidgetState extends State<ExamWidget> {
   Widget build(BuildContext context) {
     if (isShowingInstructions) {
       return ExamInstructionsWidget(
+        mode: widget.mode,
         onInitExam: () {
           setState(() {
             isShowingInstructions = false;
@@ -41,7 +42,10 @@ class _ExamWidgetState extends State<ExamWidget> {
     final exam = widget.exam;
 
     if (exam != null) {
-      return ExamQuestionsWidget(exam: exam, mode: widget.mode);
+      return ExamQuestionsWidget(
+        exam: exam,
+        mode: widget.mode,
+      );
     }
 
     return ExamLoadingWidget();

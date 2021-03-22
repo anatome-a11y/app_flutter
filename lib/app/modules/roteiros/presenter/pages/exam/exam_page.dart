@@ -29,24 +29,61 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ScopedBuilder<ExamStore, Exception, ExamState>(
-        store: store,
-        onState: (context, state) {
-          if (state is ExamContentState) {
-            return ExamWidget(
-              exam: state.exam,
-              mode: widget.mode,
-            );
-          }
+      body: _Body(store: store, mode: widget.mode),
+    );
+  }
+}
 
+class _Body extends StatelessWidget {
+  final ExamStore store;
+  final ExamMode mode;
+
+  const _Body({Key? key, required this.store, required this.mode})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      return SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: constraints.maxHeight,
+          ),
+          child: IntrinsicHeight(
+            child: _Content(store: store, mode: mode),
+          ),
+        ),
+      );
+    });
+  }
+}
+
+class _Content extends StatelessWidget {
+  final ExamStore store;
+  final ExamMode mode;
+
+  const _Content({Key? key, required this.store, required this.mode})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ScopedBuilder<ExamStore, Exception, ExamState>(
+      store: store,
+      onState: (context, state) {
+        if (state is ExamContentState) {
           return ExamWidget(
-            mode: widget.mode,
-            onInitExam: () {
-              store.setExam();
-            },
+            exam: state.exam,
+            mode: mode,
           );
-        },
-      ),
+        }
+
+        return ExamWidget(
+          mode: mode,
+          onInitExam: () {
+            store.setExam();
+          },
+        );
+      },
     );
   }
 }

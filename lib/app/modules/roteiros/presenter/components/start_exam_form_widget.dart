@@ -70,6 +70,9 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
         SizedBox(
           height: 20,
         ),
+        Expanded(
+          child: Container(),
+        ),
         Center(
           child: ElevatedButton(
             onPressed: () {
