@@ -37,9 +37,11 @@ class _InteracaoState extends State<InteracaoWidget> {
         switch ( resultA ) {
           case 0 :
             currentSettings.conhecimento_is_voz = true;
+            currentSettings.conhecimento_voz_tempo = tempoLimiteVoz;
             break;
           case 1 :
             currentSettings.conhecimento_is_teclado = true;
+            currentSettings.conhecimento_teclado_tempo = tempoLimiteTeclado;
             break;
         }
       }
@@ -61,12 +63,15 @@ class _InteracaoState extends State<InteracaoWidget> {
         switch ( resultB ) {
           case 0 :
             currentSettings.localizacao_is_nfc = true;
+            currentSettings.localizacao_nfc_tempo = tempoLimiteLocNFC;
             break;
           case 1 :
             currentSettings.localizacao_is_voz = true;
+            currentSettings.localizacao_voz_tempo = tempoLimiteLocVoz;
             break;
           case 1 :
             currentSettings.localizacao_is_teclado = true;
+            currentSettings.localizacao_teclado_tempo = tempoLimiteLocTeclado;
             break;
         }
       }
@@ -352,7 +357,12 @@ class _InteracaoState extends State<InteracaoWidget> {
               )
             ]
           )
-        )
+        ),
+        ElevatedButton(onPressed: () {
+          Settings currentSettings = getIt<Settings>();
+          print(currentSettings);
+        }, child: Text('press'))
+
       ],
     );
   }

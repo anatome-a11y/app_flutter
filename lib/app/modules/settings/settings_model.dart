@@ -24,4 +24,27 @@ class Settings {
 
   int max_tentativas = 1;
 
+  String toString () {
+    String aux = "";
+
+    aux += "entrada...................: " + this.entrada.toString() + "\n";
+    aux += "apresentacao..............: " + this.apresentacao.toString() + "\n";
+    aux += "----------------------------\n";
+    aux += "conhecimento_is_voz.......: " + this.conhecimento_is_voz.toString() + "\n";
+    aux += "conhecimento_is_teclado...: " + this.conhecimento_is_teclado.toString() + "\n";
+    aux += "localizacao_is_voz........: " + this.localizacao_is_voz.toString() + "\n";
+    aux += "localizacao_is_nfc........: " + this.localizacao_is_nfc.toString() + "\n";
+    aux += "localizacao_is_teclado....: " + this.localizacao_is_teclado.toString() + "\n";
+    aux += "----------------------------\n";
+    aux += "conhecimento_voz_tempo....: " + this.conhecimento_voz_tempo.toString() + "\n";
+    aux += "conhecimento_teclado_tempo: " + this.conhecimento_teclado_tempo.toString() + "\n";
+    aux += "localizacao_voz_tempo.....: " + this.localizacao_voz_tempo.toString() + "\n";
+    aux += "localizacao_nfc_tempo.....: " + this.localizacao_nfc_tempo.toString() + "\n";
+    aux += "localizacao_teclado_tempo.: " + this.localizacao_teclado_tempo.toString() + "\n";
+    aux += "----------------------------\n";
+    aux += "max_tentativas............: " + this.max_tentativas.toString();
+
+    return aux;
+  }
+
 } 
