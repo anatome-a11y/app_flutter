@@ -1,11 +1,13 @@
+import 'package:app_flutter/app/modules/settings/settings_model.dart';
 import "package:flutter/material.dart";
+import 'package:get_it/get_it.dart';
 
-class Interacao extends StatefulWidget {
+class InteracaoWidget extends StatefulWidget {
   @override
   _InteracaoState createState() => _InteracaoState();
 }
 
-class _InteracaoState extends State<Interacao> {
+class _InteracaoState extends State<InteracaoWidget> {
 
   int groupValueA = -1;
   int resultA = -1;
@@ -19,11 +21,27 @@ class _InteracaoState extends State<Interacao> {
   int maximoTentativas = 3;
   bool isConfigProf = false;
 
+  GetIt getIt = GetIt.instance;
+
   void onChangeA ( int? value ) {
     setState(() {
       if ( value != null) {
         groupValueA = value;
         resultA = groupValueA;
+
+        Settings currentSettings = getIt<Settings>();
+
+        currentSettings.conhecimento_is_teclado = false;
+        currentSettings.conhecimento_is_voz = false;
+
+        switch ( resultA ) {
+          case 0 :
+            currentSettings.conhecimento_is_voz = true;
+            break;
+          case 1 :
+            currentSettings.conhecimento_is_teclado = true;
+            break;
+        }
       }
     });
   }
@@ -33,6 +51,24 @@ class _InteracaoState extends State<Interacao> {
       if ( value != null) {
         groupValueB = value;
         resultB = groupValueB;
+
+        Settings currentSettings = getIt<Settings>();
+        
+        currentSettings.localizacao_is_voz = false;
+        currentSettings.localizacao_is_nfc = false;
+        currentSettings.localizacao_is_teclado = false;
+
+        switch ( resultB ) {
+          case 0 :
+            currentSettings.localizacao_is_nfc = true;
+            break;
+          case 1 :
+            currentSettings.localizacao_is_voz = true;
+            break;
+          case 1 :
+            currentSettings.localizacao_is_teclado = true;
+            break;
+        }
       }
     });
   }
@@ -95,6 +131,8 @@ class _InteracaoState extends State<Interacao> {
                       onChanged: (double value) {
                         setState(() {
                           tempoLimiteVoz = value.toInt();
+                          Settings currentSettings = getIt<Settings>();
+                          currentSettings.conhecimento_voz_tempo = tempoLimiteVoz;
                         });
                       },
                       value: tempoLimiteVoz.toDouble(),
@@ -125,6 +163,8 @@ class _InteracaoState extends State<Interacao> {
                       onChanged: (double value) {
                         setState(() {
                           tempoLimiteTeclado = value.toInt();
+                          Settings currentSettings = getIt<Settings>();
+                          currentSettings.conhecimento_teclado_tempo = tempoLimiteTeclado;
                         });
                       },
                       value: tempoLimiteTeclado.toDouble(),
@@ -178,6 +218,8 @@ class _InteracaoState extends State<Interacao> {
                       onChanged: (double value) {
                         setState(() {
                           tempoLimiteLocNFC = value.toInt();
+                          Settings currentSettings = getIt<Settings>();
+                          currentSettings.localizacao_nfc_tempo = tempoLimiteLocNFC;
                         });
                       },
                       value: tempoLimiteLocNFC.toDouble(),
@@ -208,6 +250,8 @@ class _InteracaoState extends State<Interacao> {
                       onChanged: (double value) {
                         setState(() {
                           tempoLimiteLocVoz = value.toInt();
+                          Settings currentSettings = getIt<Settings>();
+                          currentSettings.localizacao_voz_tempo = tempoLimiteLocVoz;
                         });
                       },
                       value: tempoLimiteLocVoz.toDouble(),
@@ -238,6 +282,8 @@ class _InteracaoState extends State<Interacao> {
                       onChanged: (double value) {
                         setState(() {
                           tempoLimiteLocTeclado = value.toInt();
+                          Settings currentSettings = getIt<Settings>();
+                          currentSettings.localizacao_teclado_tempo = tempoLimiteLocTeclado;
                         });
                       },
                       value: tempoLimiteLocTeclado.toDouble(),
@@ -275,6 +321,8 @@ class _InteracaoState extends State<Interacao> {
                       onChanged: (double value) {
                         setState(() {
                           maximoTentativas = value.toInt();
+                          Settings currentSettings = getIt<Settings>();
+                          currentSettings.max_tentativas = maximoTentativas;
                         });
                       },
                       value: maximoTentativas.toDouble(),
