@@ -1,3 +1,4 @@
+import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/pages/exam/exam_state.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/pages/exam/exam_store.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,10 @@ import 'components/exam_widget.dart';
 
 class ExamPage extends StatefulWidget {
   final String title;
-  const ExamPage({Key? key, this.title = "Avaliação"}) : super(key: key);
+  final ExamMode mode;
+
+  const ExamPage({Key? key, this.title = "Avaliação", required this.mode})
+      : super(key: key);
   @override
   ExamPageState createState() => ExamPageState();
 }
@@ -31,10 +35,12 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
           if (state is ExamContentState) {
             return ExamWidget(
               exam: state.exam,
+              mode: widget.mode,
             );
           }
 
           return ExamWidget(
+            mode: widget.mode,
             onInitExam: () {
               store.setExam();
             },
