@@ -11,7 +11,7 @@ abstract class Question1 {
         number: 9,
         name: 'Maxila',
         theoreticalContent: [
-          theoreticalContents[1],
+          theoreticalContents[0],
         ],
         partRelations: [
           AnatomyPartRelation(
@@ -21,7 +21,7 @@ abstract class Question1 {
               name: 'Concha Nasal Inferior (2)',
               partRelations: [],
               theoreticalContent: [
-                theoreticalContents[2],
+                theoreticalContents[1],
               ],
             ),
             relationDescription1:
@@ -35,7 +35,7 @@ abstract class Question1 {
               name: 'Vomer',
               partRelations: [],
               theoreticalContent: [
-                theoreticalContents[3],
+                theoreticalContents[2],
               ],
             ),
             relationDescription1:

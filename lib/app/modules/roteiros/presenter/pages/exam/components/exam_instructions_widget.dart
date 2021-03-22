@@ -35,7 +35,16 @@ class ExamInstructionsWidget extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.all(20),
           child: ElevatedButton(
-            child: Text('Iniciar exame'),
+            child: Container(
+              width: double.infinity,
+              height: 50,
+              child: Center(
+                child: Text(
+                  'Iniciar exame',
+                  style: TextStyle(fontSize: 22),
+                ),
+              ),
+            ),
             onPressed: onInitExam,
           ),
         ),

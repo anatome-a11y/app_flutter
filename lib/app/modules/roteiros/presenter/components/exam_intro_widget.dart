@@ -11,10 +11,10 @@ class ExamIntroWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          exam.message,
-          style: TextStyle(fontSize: 40),
-        ),
+        // Text(
+        //   exam.message,
+        //   style: TextStyle(fontSize: 40),
+        // ),
         ConstrainedBox(
           constraints: BoxConstraints(maxHeight: 300),
           child: ListView.builder(

@@ -19,6 +19,8 @@ class ExamRepository implements IExamRepository {
       Question1.get(cranio, theoreticalContents),
     ]);
 
+    await Future.delayed(Duration(seconds: 4));
+
     return optionOf(exam).fold(
       () => Left(Exception()),
       (exam) => right(exam),

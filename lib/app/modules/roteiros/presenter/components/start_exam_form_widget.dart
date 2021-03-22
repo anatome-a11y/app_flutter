@@ -7,17 +7,14 @@ class StartExamFormWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  _StartExamFormWidgetState createState() =>
-      _StartExamFormWidgetState(initExam);
+  _StartExamFormWidgetState createState() => _StartExamFormWidgetState();
 }
 
 class _StartExamFormWidgetState extends State<StartExamFormWidget> {
-  final Function(bool isTeorico, bool isLocalizar) initExam;
-
   bool isTeorico = false;
   bool isLocalizar = false;
 
-  _StartExamFormWidgetState(this.initExam);
+  _StartExamFormWidgetState();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +72,7 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
         Center(
           child: ElevatedButton(
             onPressed: () {
-              initExam(isTeorico, isLocalizar);
+              widget.initExam(isTeorico, isLocalizar);
             },
             child: Container(
               width: double.infinity,
