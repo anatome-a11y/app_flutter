@@ -1,7 +1,8 @@
+import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
 import 'package:flutter/material.dart';
 
 class StartExamFormWidget extends StatefulWidget {
-  final Function(bool isTeorico, bool isLocalizar) initExam;
+  final Function(ExamMode mode) initExam;
 
   const StartExamFormWidget({Key? key, required this.initExam})
       : super(key: key);
@@ -11,8 +12,8 @@ class StartExamFormWidget extends StatefulWidget {
 }
 
 class _StartExamFormWidgetState extends State<StartExamFormWidget> {
-  bool isTeorico = false;
-  bool isLocalizar = false;
+  bool isTheoretical = false;
+  bool isToFind = false;
 
   _StartExamFormWidgetState();
 
@@ -25,20 +26,20 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
         RadioListTile(
           title: const Text('Conteúdo Teórico'),
           value: true,
-          groupValue: isTeorico,
+          groupValue: isTheoretical,
           onChanged: (bool? value) {
             setState(() {
-              isTeorico = true;
+              isTheoretical = true;
             });
           },
         ),
         RadioListTile(
           title: const Text('Conteúdo Prático'),
           value: false,
-          groupValue: isTeorico,
+          groupValue: isTheoretical,
           onChanged: (bool? value) {
             setState(() {
-              isTeorico = false;
+              isTheoretical = false;
             });
           },
         ),
@@ -49,20 +50,20 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
         RadioListTile(
           title: const Text('Conteúdo -> Localização'),
           value: true,
-          groupValue: isLocalizar,
+          groupValue: isToFind,
           onChanged: (bool? value) {
             setState(() {
-              isLocalizar = true;
+              isToFind = true;
             });
           },
         ),
         RadioListTile(
           title: const Text('Localização -> Conteúdo'),
           value: false,
-          groupValue: isLocalizar,
+          groupValue: isToFind,
           onChanged: (bool? value) {
             setState(() {
-              isLocalizar = false;
+              isToFind = false;
             });
           },
         ),
@@ -72,7 +73,12 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
         Center(
           child: ElevatedButton(
             onPressed: () {
-              widget.initExam(isTeorico, isLocalizar);
+              widget.initExam(
+                ExamMode(
+                  isTheoretical: isTheoretical,
+                  isToFind: isToFind,
+                ),
+              );
             },
             child: Container(
               width: double.infinity,

@@ -20,6 +20,6 @@ class RoteirosModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, __) => ScriptHomePage()),
-    ChildRoute('/exam', child: (_, args) => ExamPage()),
+    ChildRoute('/exam', child: (_, args) => ExamPage(mode: args.data)),
   ];
 }

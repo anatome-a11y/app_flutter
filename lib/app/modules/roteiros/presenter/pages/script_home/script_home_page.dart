@@ -55,8 +55,8 @@ class NotStartedExam extends StatelessWidget {
             SizedBox(
               height: 40,
             ),
-            StartExamFormWidget(initExam: (isTeorico, isLocalizar) {
-              store.initExam(isTeorico, isLocalizar);
+            StartExamFormWidget(initExam: (mode) {
+              store.initExam(mode);
             })
           ],
         ),
