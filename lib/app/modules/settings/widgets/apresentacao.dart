@@ -1,21 +1,42 @@
+import 'package:app_flutter/app/modules/settings/settings_model.dart';
 import "package:flutter/material.dart";
+import 'package:get_it/get_it.dart';
 
-class Apresentacao extends StatefulWidget {
+class ApresentacaoWidget extends StatefulWidget {
   @override
   _ApresentacaoState createState() => _ApresentacaoState();
 }
 
-class _ApresentacaoState extends State<Apresentacao> {
+class _ApresentacaoState extends State<ApresentacaoWidget> {
 
   int groupValue = -1;
   int result = -1;
+
+  GetIt getIt = GetIt.instance;
 
   void onChange ( int? value ) {
     setState(() {
       if ( value != null) {
         groupValue = value;
         result = groupValue;
-      }
+
+        Settings currentSettings = getIt<Settings>();
+
+        switch ( result ) {
+          case 0 :
+            currentSettings.apresentacao = Apresentacao.IMAGEM;
+            break;
+          case 1 :
+            currentSettings.apresentacao = Apresentacao.VIDEO;
+            break;
+          case 2 :
+            currentSettings.apresentacao = Apresentacao.TEXTO;
+            break;
+          case 3 :
+            currentSettings.apresentacao = Apresentacao.AUDIO;
+            break;
+        }
+    }
     });
   }
 

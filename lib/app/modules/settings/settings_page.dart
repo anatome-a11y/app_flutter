@@ -33,11 +33,11 @@ class _SettingsState extends State<Settings> {
           ],
         ),
       ),
-      Entrada(),
+      EntradaWidget(),
       SizedBox(height: 10),
-      Apresentacao(),
+      ApresentacaoWidget(),
       SizedBox(height: 10),
-      Interacao()
+      InteracaoWidget()
     ];
 
     return content;

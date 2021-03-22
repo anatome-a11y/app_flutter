@@ -1,6 +1,3 @@
-import 'package:app_flutter/app/modules/roteiros/domain/entities/exam.dart';
-import 'package:app_flutter/app/modules/roteiros/domain/usecases/init_exam.dart';
-import 'package:app_flutter/app/modules/roteiros/presenter/components/exam_intro_widget.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/components/start_exam_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
