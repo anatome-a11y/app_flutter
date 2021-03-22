@@ -8,9 +8,11 @@ class ScriptHomeStore extends NotifierStore<Exception, ScriptHomeState> {
   ScriptHomeStore() : super(ScriptHomeState());
 
   initExam(ExamMode mode) async {
+    final String contentType = mode.isTheoretical ? 'theoretical' : 'practical';
+    final String answerMode = mode.isToFind ? 'find' : 'name';
+
     Modular.to.pushNamed(
-      'exam',
-      arguments: mode,
+      'exam/$contentType/$answerMode',
     );
   }
 }
