@@ -35,9 +35,11 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
             exam: widget.exam,
             onPrev: () {
               print('prev');
+              currentQuestionIndex--;
             },
             onNext: () {
               setState(() {
+                print('next');
                 currentQuestionIndex++;
               });
             },
@@ -118,10 +120,12 @@ class _QuestionContent extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          Text('aaa'),
-          Text('Estou na questão $currentQuestionIndex'),
-          Text('aaa'),
-          if (mode.isTheoretical) Text('é conteúdo teórico'),
+          Text('Questão $currentQuestionIndex', style: TextStyle(fontSize: 30)),
+          const SizedBox(
+            height: 20,
+          ),
+          if (mode.isTheoretical) Text('É conteúdo teórico')
+          else Text("É conteúdo Prático"),
         ],
       ),
     );
@@ -145,6 +149,7 @@ class _ControlButtons extends StatelessWidget {
     return Row(
       children: [
         Expanded(
+          flex: 1,
           child: ElevatedButton(
             onPressed: onPrev,
             child: Container(
@@ -159,6 +164,22 @@ class _ControlButtons extends StatelessWidget {
           width: 20,
         ),
         Expanded(
+          flex: 3,
+          child: ElevatedButton(
+            onPressed: onNext,
+            child: Container(
+              height: 60,
+              child: Center(
+                child: Text("Finalizar"),
+              ),
+            ),
+          ),
+        ),
+         const SizedBox(
+          width: 20,
+        ),
+        Expanded(
+          flex: 1,
           child: ElevatedButton(
             onPressed: onNext,
             child: Container(
