@@ -17,8 +17,6 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
   @override
   void initState() {
     super.initState();
-
-    store.setExam();
   }
 
   @override
@@ -36,7 +34,11 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
             );
           }
 
-          return ExamWidget();
+          return ExamWidget(
+            onInitExam: () {
+              store.setExam();
+            },
+          );
         },
       ),
     );
