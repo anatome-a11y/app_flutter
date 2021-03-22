@@ -11,7 +11,7 @@ class ScriptCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Modular.to.navigate('/scripts');
+        Modular.to.pushNamed('/scripts');
       },
       child: Card(
         clipBehavior: Clip.antiAlias,
