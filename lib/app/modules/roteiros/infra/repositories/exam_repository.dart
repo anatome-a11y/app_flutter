@@ -15,11 +15,13 @@ class ExamRepository implements IExamRepository {
   ];
 
   Future<Either<Exception, Exam>> getExam() async {
-    final exam = Exam(questions: [
-      Question1.get(cranio, theoreticalContents),
-    ]);
+    final exam = Exam(
+      questions: [
+        for (int i = 0; i < 12; i++) Question1.get(cranio, theoreticalContents)
+      ],
+    );
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(milliseconds: 300));
 
     return optionOf(exam).fold(
       () => Left(Exception()),

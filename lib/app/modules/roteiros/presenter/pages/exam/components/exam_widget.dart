@@ -41,6 +41,7 @@ class _ExamWidgetState extends State<ExamWidget> {
 
     final exam = widget.exam;
 
+    // return ExamLoadingWidget();
     if (exam != null) {
       return ExamQuestionsWidget(
         exam: exam,

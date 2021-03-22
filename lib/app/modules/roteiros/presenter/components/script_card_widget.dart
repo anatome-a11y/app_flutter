@@ -1,5 +1,6 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/script.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class ScriptCardWidget extends StatelessWidget {
@@ -9,29 +10,31 @@ class ScriptCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Modular.to.pushNamed('/scripts');
-      },
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
       child: Card(
         clipBehavior: Clip.antiAlias,
-        child: Column(
-          children: [
-            ListTile(
-              title: Text(script.name),
-              subtitle: Text(
-                script.discipline,
-                style: TextStyle(color: Colors.black.withOpacity(0.6)),
+        child: InkWell(
+          onTap: () {
+            Modular.to.pushNamed('/scripts');
+          },
+          child: Column(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(script.name),
+                ],
               ),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.all(16.0),
-            //   child: Text(
-            //     'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
-            //     style: TextStyle(color: Colors.black.withOpacity(0.6)),
-            //   ),
-            // ),
-          ],
+              ListTile(
+                title: Text(script.name),
+                subtitle: Text(
+                  script.discipline,
+                  style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -64,15 +64,8 @@ class _Body extends StatelessWidget {
 class _QuestionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        for (int i = 0; i < 12; i++)
-          Container(
-            height: 25,
-            color: Colors.white,
-          )
-      ],
+    return Container(
+      color: Colors.white,
     );
   }
 }

@@ -16,8 +16,8 @@ class ExamInstructionsWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Card(
-            clipBehavior: Clip.antiAlias,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListTile(
                   title: Text(
@@ -34,6 +34,7 @@ class ExamInstructionsWidget extends StatelessWidget {
                   child: Text(
                     getText(),
                     style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.start,
                   ),
                 )
               ],

@@ -49,31 +49,46 @@ class NotStartedExam extends StatelessWidget {
               minHeight: constraints.maxHeight,
             ),
             child: IntrinsicHeight(
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  children: [
-                    Center(
-                      child: Text(
-                        'Clique no botão para iniciar o exame',
-                        style: TextStyle(fontSize: 25),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Expanded(
-                      child: StartExamFormWidget(initExam: (mode) {
-                        store.initExam(mode);
-                      }),
-                    )
-                  ],
-                ),
-              ),
+              child: _Content(store: store),
             ),
           ),
         );
       },
+    );
+  }
+}
+
+class _Content extends StatelessWidget {
+  final ScriptHomeStore store;
+
+  const _Content({Key? key, required this.store}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 20, bottom: 5),
+            child: Text(
+              'Clique no botão para iniciar o exame',
+              style: TextStyle(
+                fontSize: 30,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          Expanded(
+            child: StartExamFormWidget(initExam: (mode) {
+              store.initExam(mode);
+            }),
+          )
+        ],
+      ),
     );
   }
 }

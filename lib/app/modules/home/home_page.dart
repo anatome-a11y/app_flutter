@@ -22,15 +22,11 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         title: Text('Anatome App'),
         actions: [
           IconButton(
-            icon: Icon(
-              Icons.settings
-            ), 
+            icon: Icon(Icons.settings),
             onPressed: () {
               Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => Settings())
-              );
-            }
+                  context, MaterialPageRoute(builder: (context) => Settings()));
+            },
           )
         ],
       ),
@@ -47,15 +43,13 @@ class AnatomeHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 20,
-        ),
-        Text(
-          'Você está em roteiros',
-          style: TextStyle(fontSize: 30),
-        ),
-        SizedBox(
-          height: 5,
+        Padding(
+          padding: const EdgeInsets.only(top: 28, bottom: 5),
+          child: Text(
+            'Você está em roteiros',
+            style: TextStyle(fontSize: 30),
+            textAlign: TextAlign.center,
+          ),
         ),
         ConstrainedBox(
           constraints: BoxConstraints(maxHeight: 200),
