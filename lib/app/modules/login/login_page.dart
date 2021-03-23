@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter_modular/flutter_modular.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -23,9 +24,8 @@ class _LoginState extends State<Login> {
       setState((){
         logged = false;
       });
-      // ***************************
-      //     MUDAR DE ROTA AQUI
-      // ***************************
+      
+      Modular.to.navigate('/home');
     }
   }
 
