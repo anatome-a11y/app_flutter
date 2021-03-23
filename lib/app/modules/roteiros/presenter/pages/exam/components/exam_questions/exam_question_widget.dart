@@ -6,6 +6,8 @@ import 'package:app_flutter/app/modules/roteiros/domain/entities/question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'exam_questions_list.dart';
+
 class ExamQuestionsWidget extends StatefulWidget {
   final Exam exam;
   final ExamMode mode;
@@ -150,7 +152,7 @@ class _Body extends StatelessWidget {
             children: [
               ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: 60),
-                child: _QuestionsList(
+                child: QuestionsList(
                   exam: exam,
                   currentQuestionIndex: currentQuestionIndex,
                   onSelect: onSelect,
@@ -170,50 +172,6 @@ class _Body extends StatelessWidget {
           );
         },
       ),
-    );
-  }
-}
-
-class _QuestionsList extends StatelessWidget {
-  final Exam exam;
-  final int currentQuestionIndex;
-  final Function(int index) onSelect;
-
-  _QuestionsList(
-      {Key? key,
-      required this.exam,
-      required this.currentQuestionIndex,
-      required this.onSelect})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 12,
-      itemBuilder: (context, index) {
-        return Card(
-          color: currentQuestionIndex == index ? Colors.black45 : Colors.white,
-          child: InkWell(
-            onTap: () {
-              onSelect(index);
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Text(
-                '${index + 1}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: currentQuestionIndex == index
-                      ? Colors.white
-                      : Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }
@@ -254,6 +212,12 @@ class _QuestionContent extends StatelessWidget {
           //   Text('É conteúdo teórico')
           // else
           //   Text("É conteúdo Prático"),
+
+          if (mode.isTheoretical && mode.isToFind)
+            Container(), // TheoreticalFind(question)
+
+          if (mode.isTheoretical && mode.isToFind)
+            Container(), // TheoreticalName(question)
 
           Text('Parte ${question.part.number}'),
           TextField(
