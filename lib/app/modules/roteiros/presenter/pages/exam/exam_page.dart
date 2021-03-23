@@ -43,18 +43,7 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: constraints.maxHeight,
-          ),
-          child: IntrinsicHeight(
-            child: _Content(store: store, mode: mode),
-          ),
-        ),
-      );
-    });
+    return _Content(store: store, mode: mode);
   }
 }
 

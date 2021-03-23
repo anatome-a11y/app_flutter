@@ -11,6 +11,23 @@ class ExamInstructionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
+            ),
+            child: IntrinsicHeight(
+              child: _content(),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _content() {
     return Column(
       children: [
         Padding(
@@ -20,6 +37,7 @@ class ExamInstructionsWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListTile(
+                  contentPadding: const EdgeInsets.only(left: 16),
                   title: Text(
                     'Instruções',
                     style: TextStyle(
