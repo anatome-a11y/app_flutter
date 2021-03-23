@@ -11,7 +11,8 @@ abstract class Question1 {
         number: 9,
         name: 'Maxila',
         theoreticalContent: [
-          theoreticalContents[0],
+          'Osso par, irregular e pneumático. Articula-se com o nasal, palatino, etmoide, frontal, zigomático, lacrimal, vômer e concha nasal inferior.',
+          'Suportam os dentes superiores e forma uma parte do palato, da cavidade nasal e da órbita ocular.'
         ],
         partRelations: [
           AnatomyPartRelation(
@@ -21,7 +22,8 @@ abstract class Question1 {
               name: 'Concha Nasal Inferior (2)',
               partRelations: [],
               theoreticalContent: [
-                theoreticalContents[1],
+                'Osso par, irregular, que forma a lateral inferior da fossa nasal, paralelamente ao vômer e com formato de gancho.',
+                'Localizado inferiormente à concha nasal média do osso etmoide. Articula-se com o etmoide, maxilar, lacrimal e palatino.'
               ],
             ),
             relationDescription1:
@@ -35,7 +37,7 @@ abstract class Question1 {
               name: 'Vomer',
               partRelations: [],
               theoreticalContent: [
-                theoreticalContents[2],
+                'Osso ímpar, laminar, localizado acima da região da boca e abaixo do nariz.',
               ],
             ),
             relationDescription1:
