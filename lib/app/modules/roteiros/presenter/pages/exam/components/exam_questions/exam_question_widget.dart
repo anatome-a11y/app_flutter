@@ -220,7 +220,7 @@ class _QuestionContent extends StatelessWidget {
               _PraticalContentQuestion(),
 
           if (!mode.isTheoretical && !mode.isToFind)
-            _TheoricalFindQuestion(),// TheoreticalFind(question)
+            _PraticallFindQuestion(),// TheoreticalFind(question)
 
           /*Text('Parte ${question.part.number}'),
           TextField(
@@ -395,8 +395,9 @@ Widget _TheoricalContentQuestion(){
               'Parte ${question.part.number}',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 25, 
-                color: Colors.black45
+                fontSize: 20, 
+                color: Colors.black,
+                fontWeight: FontWeight.bold
               ),
             ),
             ),
@@ -411,26 +412,9 @@ Widget _TheoricalContentQuestion(){
               maxLines: null,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Nome da peça'
+                  hintText: 'Parte'
                 ),
               ),
-            ),
-
-            Divider(
-              height: 20,
-            ),
-            
-            const SizedBox(
-              height: 5,
-            ),
-            
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: 
-                Text(
-                  '${question.part.theoreticalContent[0]}',
-                  textAlign: TextAlign.justify,
-                ), 
             ),
 
           ],
