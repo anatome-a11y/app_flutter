@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam.dart';
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
-import 'package:app_flutter/app/modules/roteiros/domain/entities/question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -294,7 +292,7 @@ class _QuestionContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: Text(
-                'Parte ${question.part.number}',
+                'arte ${question.part.number}',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25, color: Colors.black45),
               ),
@@ -305,22 +303,9 @@ class _QuestionContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: TextField(
-                keyboardType: TextInputType.text,
-                autofocus: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Nome da parte',
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: TextField(
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Conteúdo teórico',
-                ),
+                    border: InputBorder.none, hintText: 'Nome da parte'),
               ),
             ),
           ],
