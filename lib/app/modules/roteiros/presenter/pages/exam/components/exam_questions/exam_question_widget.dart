@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam.dart';
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
-import 'package:app_flutter/app/modules/roteiros/domain/entities/question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -210,17 +208,15 @@ class _QuestionContent extends StatelessWidget {
             height: 10,
           ),
 
-          if (mode.isTheoretical && mode.isToFind)
-              _TheoricalContentQuestion(),
+          if (mode.isTheoretical && mode.isToFind) _TheoricalContentQuestion(),
 
           if (mode.isTheoretical && !mode.isToFind)
-            _TheoricalFindQuestion(),// TheoreticalFind(question)
+            _TheoricalFindQuestion(), // TheoreticalFind(question)
 
-          if (!mode.isTheoretical && mode.isToFind)
-              _PraticalContentQuestion(),
+          if (!mode.isTheoretical && mode.isToFind) _PraticalContentQuestion(),
 
           if (!mode.isTheoretical && !mode.isToFind)
-            _PraticallFindQuestion(),// TheoreticalFind(question)
+            _PraticallFindQuestion(), // TheoreticalFind(question)
 
           /*Text('Parte ${question.part.number}'),
           TextField(
@@ -240,189 +236,141 @@ class _QuestionContent extends StatelessWidget {
     );
   }
 
-  Widget _TheoricalFindQuestion(){
+  Widget _TheoricalFindQuestion() {
     final question = exam.questions[currentQuestionIndex];
 
     return Container(
-          width: double.infinity,
-          
-
+        width: double.infinity,
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(6.0),
-            child: Text(
-              'Parte ${question.part.number}',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 25, 
-                color: Colors.black45
+              child: Text(
+                'Parte ${question.part.number}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25, color: Colors.black45),
               ),
-            ),
             ),
             const SizedBox(
               height: 5,
             ),
-
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: TextField(
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Nome da peça'
-                ),
-              ),
-            ),
-
-            Divider(
-              height: 20,
-            ),
-            
-            const SizedBox(
-              height: 5,
-            ),
-            
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: 
-                Text(
-                  '${question.part.theoreticalContent[0]}',
-                  textAlign: TextAlign.justify,
-                ), 
-            ),
-
-          ],
-        ) 
-
-    );
-  }
-
-
-Widget _TheoricalContentQuestion(){
-    final question = exam.questions[currentQuestionIndex];
-
-    return Container(
-          width: double.infinity,
-          
-
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-            child: Text(
-              'Nome da parte ${question.part.number}',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 25, 
-                color: Colors.black45
-              ),
-            ),
-            ),
-
-
-            const SizedBox(
-              height: 5,
-            ),
-
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: TextField(
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
                 decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Nome da parte'
-                ),
+                    border: InputBorder.none, hintText: 'Nome da peça'),
               ),
             ),
-          ],
-        ) 
-
-    );
-  }
-
-  Widget _PraticalContentQuestion(){
-    final question = exam.questions[currentQuestionIndex]; 
-    
-    return Container(
-          width: double.infinity,
-          
-
-        child: Column(
-          children: [
-
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: 
-                Text(
-                  '${question.part.theoreticalContent[0]}',
-                  textAlign: TextAlign.justify,
-                ), 
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: TextField(
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Número da peça'
-                ),
-              ),
-            ),
-
-          ],
-        ) 
-
-    );
-  }
-
-  Widget _PraticallFindQuestion(){
-    final question = exam.questions[currentQuestionIndex];
-
-    return Container(
-          width: double.infinity,
-          
-
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-            child: Text(
-              'Parte ${question.part.number}',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20, 
-                color: Colors.black,
-                fontWeight: FontWeight.bold
-              ),
-            ),
+            Divider(
+              height: 20,
             ),
             const SizedBox(
               height: 5,
             ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                '${question.part.theoreticalContent[0]}',
+                textAlign: TextAlign.justify,
+              ),
+            ),
+          ],
+        ));
+  }
 
+  Widget _TheoricalContentQuestion() {
+    final question = exam.questions[currentQuestionIndex];
+
+    return Container(
+        width: double.infinity,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                'Nome da parte ${question.part.number}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25, color: Colors.black45),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: TextField(
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
                 decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'Parte'
-                ),
+                    border: InputBorder.none, hintText: 'Nome da parte'),
               ),
             ),
-
           ],
-        ) 
-
-    );
+        ));
   }
 
+  Widget _PraticalContentQuestion() {
+    final question = exam.questions[currentQuestionIndex];
+
+    return Container(
+        width: double.infinity,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                '${question.part.theoreticalContent[0]}',
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'Número da peça'),
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget _PraticallFindQuestion() {
+    final question = exam.questions[currentQuestionIndex];
+
+    return Container(
+        width: double.infinity,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                'Parte ${question.part.number}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'Parte'),
+              ),
+            ),
+          ],
+        ));
+  }
 }
 
 class _ControlButtons extends StatelessWidget {
