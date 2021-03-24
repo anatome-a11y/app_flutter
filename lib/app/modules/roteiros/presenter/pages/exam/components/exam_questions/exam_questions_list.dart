@@ -21,7 +21,7 @@ class QuestionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 12,
+      itemCount: exam.questions.length,
       itemBuilder: (context, index) {
         return Card(
           color: currentQuestionIndex == index ? Colors.black45 : Colors.white,
