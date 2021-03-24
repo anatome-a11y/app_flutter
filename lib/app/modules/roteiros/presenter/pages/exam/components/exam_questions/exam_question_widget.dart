@@ -211,10 +211,10 @@ class _QuestionContent extends StatelessWidget {
           ),
 
           if (mode.isTheoretical && mode.isToFind)
-            TheoricalQuestion(),// TheoreticalFind(question)
+              Container(),
 
-          if (mode.isTheoretical && mode.isToFind)
-            Container(), // TheoreticalName(question)
+          if (mode.isTheoretical && !mode.isToFind)
+            _TheoricalFindQuestion(),// TheoreticalFind(question)
 
           /*Text('Parte ${question.part.number}'),
           TextField(
@@ -234,23 +234,74 @@ class _QuestionContent extends StatelessWidget {
     );
   }
 
-  Widget TheoricalQuestion(){
+  Widget _TheoricalFindQuestion(){
     final question = exam.questions[currentQuestionIndex];
 
     return Container(
-      padding: const EdgeInsets.all(6.0),
-      width: double.infinity,
+          width: double.infinity,
+          
+
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+            child: Text(
+              'Parte ${question.part.number}',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 25, 
+                color: Colors.black45
+              ),
+            ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Digite o nome da peça'
+                ),
+              ),
+            ),
+
+            Divider(
+              height: 20,
+            ),
+            
+            const SizedBox(
+              height: 5,
+            ),
+            
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: 
+                Text(
+                  '${question.part.theoreticalContent[0]}',
+                  textAlign: TextAlign.justify,
+                ), 
+            ),
+
+          ],
+        ) 
       
-      child: Text(
+      /*child: Text(
         'Parte ${question.part.number}',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 25, 
           color: Colors.black45
         ),
+        
+        )
+      
+      const Divider(height: 20,)
 
       ),
-      
+      */
 
     );
   }
