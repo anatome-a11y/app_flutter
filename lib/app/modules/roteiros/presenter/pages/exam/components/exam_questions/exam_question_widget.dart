@@ -199,7 +199,8 @@ class _QuestionContent extends StatelessWidget {
             padding: const EdgeInsets.all(6.0),
             child: Text(
               question.part.piece.name,
-              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.right,
+              style: TextStyle(fontSize: 15),
             ),
           ),
           Divider(
@@ -208,18 +209,14 @@ class _QuestionContent extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          // if (mode.isTheoretical)
-          //   Text('É conteúdo teórico')
-          // else
-          //   Text("É conteúdo Prático"),
 
           if (mode.isTheoretical && mode.isToFind)
-            Container(), // TheoreticalFind(question)
+            TheoricalQuestion(),// TheoreticalFind(question)
 
           if (mode.isTheoretical && mode.isToFind)
             Container(), // TheoreticalName(question)
 
-          Text('Parte ${question.part.number}'),
+          /*Text('Parte ${question.part.number}'),
           TextField(
             decoration: InputDecoration(
               hintText: 'Nome da parte',
@@ -231,11 +228,33 @@ class _QuestionContent extends StatelessWidget {
             decoration: InputDecoration(
               hintText: 'Conteúdos teóricos',
             ),
-          )
+          )*/
         ],
       ),
     );
   }
+
+  Widget TheoricalQuestion(){
+    final question = exam.questions[currentQuestionIndex];
+
+    return Container(
+      padding: const EdgeInsets.all(6.0),
+      width: double.infinity,
+      
+      child: Text(
+        'Parte ${question.part.number}',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 25, 
+          color: Colors.black45
+        ),
+
+      ),
+      
+
+    );
+  }
+
 }
 
 class _ControlButtons extends StatelessWidget {
