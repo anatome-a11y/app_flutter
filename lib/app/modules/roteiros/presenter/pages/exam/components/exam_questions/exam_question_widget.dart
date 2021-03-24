@@ -217,7 +217,7 @@ class _QuestionContent extends StatelessWidget {
             _TheoricalFindQuestion(),// TheoreticalFind(question)
 
           if (!mode.isTheoretical && mode.isToFind)
-              _TheoricalContentQuestion(),
+              _PraticalContentQuestion(),
 
           if (!mode.isTheoretical && !mode.isToFind)
             _TheoricalFindQuestion(),// TheoreticalFind(question)
@@ -344,6 +344,43 @@ Widget _TheoricalContentQuestion(){
   }
 
   Widget _PraticalContentQuestion(){
+    final question = exam.questions[currentQuestionIndex]; 
+    
+    return Container(
+          width: double.infinity,
+          
+
+        child: Column(
+          children: [
+
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: 
+                Text(
+                  '${question.part.theoreticalContent[0]}',
+                  textAlign: TextAlign.justify,
+                ), 
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Número da peça'
+                ),
+              ),
+            ),
+
+          ],
+        ) 
+
+    );
+  }
+
+  Widget _PraticallFindQuestion(){
     final question = exam.questions[currentQuestionIndex];
 
     return Container(
@@ -355,7 +392,7 @@ Widget _TheoricalContentQuestion(){
             Padding(
               padding: const EdgeInsets.all(6.0),
             child: Text(
-              'Nome da parte ${question.part.number}',
+              'Parte ${question.part.number}',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25, 
@@ -363,8 +400,6 @@ Widget _TheoricalContentQuestion(){
               ),
             ),
             ),
-
-
             const SizedBox(
               height: 5,
             ),
@@ -372,14 +407,32 @@ Widget _TheoricalContentQuestion(){
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: TextField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Nome da parte'
+                  hintText: 'Nome da peça'
                 ),
               ),
             ),
+
+            Divider(
+              height: 20,
+            ),
+            
+            const SizedBox(
+              height: 5,
+            ),
+            
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: 
+                Text(
+                  '${question.part.theoreticalContent[0]}',
+                  textAlign: TextAlign.justify,
+                ), 
+            ),
+
           ],
         ) 
 
