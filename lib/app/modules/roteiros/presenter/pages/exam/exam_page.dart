@@ -1,6 +1,7 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/pages/exam/exam_state.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/pages/exam/exam_store.dart';
+import 'package:app_flutter/app/modules/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
@@ -28,6 +29,15 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Settings()));
+            },
+          )
+        ],
       ),
       body: _Body(store: store, mode: widget.mode),
     );

@@ -1,4 +1,5 @@
 import 'package:app_flutter/app/modules/roteiros/presenter/components/start_exam_form_widget.dart';
+import 'package:app_flutter/app/modules/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
@@ -21,6 +22,15 @@ class ScriptHomePageState
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Settings()));
+            },
+          )
+        ],
       ),
       body: ScopedBuilder<ScriptHomeStore, Exception, ScriptHomeState>(
         store: store,
