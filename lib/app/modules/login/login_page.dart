@@ -103,6 +103,7 @@ class _LoginState extends State<Login> {
                 TextField(
                   controller: senhaController,
                   keyboardType: TextInputType.text,
+                  obscureText: true,
                   decoration: InputDecoration (
                     labelText: 'Senha'
                   ),
