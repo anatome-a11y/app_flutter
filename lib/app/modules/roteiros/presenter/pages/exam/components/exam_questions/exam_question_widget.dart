@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam.dart';
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
-import 'package:app_flutter/app/modules/roteiros/domain/entities/question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -59,8 +57,8 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: new Text("Alert Dialog titulo"),
-          content: new Text("Alert Dialog body"),
+          title: new Text("Tempo encerrado"),
+          content: new Text("Tempo de avaliação encerrado, tente novamente"),
           actions: <Widget>[
             // define os botões na base do dialogo
             new ElevatedButton(
@@ -199,7 +197,8 @@ class _QuestionContent extends StatelessWidget {
             padding: const EdgeInsets.all(6.0),
             child: Text(
               question.part.piece.name,
-              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.right,
+              style: TextStyle(fontSize: 15),
             ),
           ),
           Divider(
@@ -208,18 +207,18 @@ class _QuestionContent extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          // if (mode.isTheoretical)
-          //   Text('É conteúdo teórico')
-          // else
-          //   Text("É conteúdo Prático"),
 
-          if (mode.isTheoretical && mode.isToFind)
-            Container(), // TheoreticalFind(question)
+          if (mode.isTheoretical && mode.isToFind) _TheoricalFindQuestion(),
 
-          if (mode.isTheoretical && mode.isToFind)
-            Container(), // TheoreticalName(question)
+          if (mode.isTheoretical && !mode.isToFind)
+            _TheoricalContentQuestion(), // TheoreticalFind(question)
 
-          Text('Parte ${question.part.number}'),
+          if (!mode.isTheoretical && mode.isToFind) _PraticallFindQuestion(),
+
+          if (!mode.isTheoretical && !mode.isToFind)
+            _PraticalContentQuestion(), // TheoreticalFind(question)
+
+          /*Text('Parte ${question.part.number}'),
           TextField(
             decoration: InputDecoration(
               hintText: 'Nome da parte',
@@ -231,10 +230,152 @@ class _QuestionContent extends StatelessWidget {
             decoration: InputDecoration(
               hintText: 'Conteúdos teóricos',
             ),
-          )
+          )*/
         ],
       ),
     );
+  }
+
+  Widget _TheoricalFindQuestion() {
+    final question = exam.questions[currentQuestionIndex];
+
+    return Container(
+        width: double.infinity,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                '${question.part.name}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25, color: Colors.black45),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                keyboardType: TextInputType.number,
+                autofocus: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Número da peça',
+                ),
+              ),
+            ),
+            Divider(
+              height: 20,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                '${question.part.theoreticalContent[0]}',
+                textAlign: TextAlign.justify,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget _TheoricalContentQuestion() {
+    final question = exam.questions[currentQuestionIndex];
+
+    return Container(
+        width: double.infinity,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                'arte ${question.part.number}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25, color: Colors.black45),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                keyboardType: TextInputType.multiline,
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'Nome da parte'),
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget _PraticalContentQuestion() {
+    final question = exam.questions[currentQuestionIndex];
+
+    return Container(
+        width: double.infinity,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                'Parte ${question.part.number}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25, color: Colors.black45),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                keyboardType: TextInputType.text,
+                autofocus: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Nome da parte',
+                ),
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget _PraticallFindQuestion() {
+    final question = exam.questions[currentQuestionIndex];
+
+    return Container(
+        width: double.infinity,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                '${question.part.name}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25, color: Colors.black45),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                keyboardType: TextInputType.number,
+                autofocus: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Número da peça',
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
 

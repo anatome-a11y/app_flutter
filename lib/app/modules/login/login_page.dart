@@ -7,7 +7,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
   final formKey = new GlobalKey<FormState>();
 
   bool logged = false;
@@ -15,16 +14,16 @@ class _LoginState extends State<Login> {
   TextEditingController userController = TextEditingController();
   TextEditingController senhaController = TextEditingController();
 
-  void checkLogin () {
-    if ( userController.text != 'anatome' || senhaController.text != 'anatome' ) {
-      setState((){
+  void checkLogin() {
+    if (userController.text != 'anatome' || senhaController.text != 'anatome') {
+      setState(() {
         logged = true;
       });
     } else {
-      setState((){
+      setState(() {
         logged = false;
       });
-      
+
       Modular.to.navigate('/home');
     }
   }
@@ -32,96 +31,83 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar (
+      appBar: AppBar(
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Text(
-          'Anatome',
-          style: TextStyle(
-            color: Colors.grey[600]
-          )
-        ),
+        title: Text('Anatome', style: TextStyle(color: Colors.grey[600])),
       ),
       backgroundColor: Colors.grey[100],
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 15.0),
         child: Center(
-          child: Container (
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            height: logged ? 300 : 250,
-            decoration: BoxDecoration (
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5.0)
-            ),
-            child: Column (
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                logged ? 
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                  decoration: BoxDecoration(
-                    color: Colors.red[400],
-                    borderRadius: BorderRadius.circular(5)
-                  ),
-                  child: Text(
-                    'Usuário ou senha errados',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500
-                    ),
-                  ),
-                )
-                :
-                SizedBox.shrink(),
-
-                logged ? 
-                SizedBox (
-                  height: 20,
-                )
-                :
-                SizedBox.shrink(),
-
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration (
-                    color: Colors.pink,
-                    borderRadius: BorderRadius.circular(60),
-                  ),
-                  child:Icon (
-                    Icons.lock,
+            child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                height: logged ? 300 : 250,
+                decoration: BoxDecoration(
                     color: Colors.white,
-                  )
-                ),
-                TextField(
-                  controller: userController,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration (
-                    labelText: 'Usuário'
-                  ),
-                ),
-                TextField(
-                  controller: senhaController,
-                  keyboardType: TextInputType.text,
-                  obscureText: true,
-                  decoration: InputDecoration (
-                    labelText: 'Senha'
-                  ),
-                ),
-                SizedBox (
-                  height: 15.0,
-                ),
-                ElevatedButton (
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 35),
-                    child: Text ('Entrar')
-                  ),
-                  onPressed: checkLogin,
-                )
-              ],
-            )
-          )
-        ),
+                    borderRadius: BorderRadius.circular(5.0)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    logged
+                        ? Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 10,
+                              horizontal: 30,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.red[400],
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Text(
+                              'Usuário ou senha errados',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          )
+                        : SizedBox.shrink(),
+                    logged
+                        ? SizedBox(
+                            height: 20,
+                          )
+                        : SizedBox.shrink(),
+                    Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.pink,
+                          borderRadius: BorderRadius.circular(60),
+                        ),
+                        child: Icon(
+                          Icons.lock,
+                          color: Colors.white,
+                        )),
+                    TextField(
+                      controller: userController,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(labelText: 'Usuário'),
+                      onChanged: (text) {},
+                    ),
+                    TextField(
+                      controller: senhaController,
+                      keyboardType: TextInputType.text,
+                      obscureText: true,
+                      decoration: InputDecoration(labelText: 'Senha'),
+                    ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    ElevatedButton(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 35),
+                        child: Text('Entrar'),
+                      ),
+                      onPressed: checkLogin,
+                    )
+                  ],
+                ))),
       ),
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
@@ -131,26 +117,17 @@ class _LoginState extends State<Login> {
             SizedBox(
               width: 100,
             ),
-            Text(
-              'Versão 0.1.4',
-              style: TextStyle (
-                color: Colors.grey[600]
-              )
-            ),
+            Text('Versão 0.1.4', style: TextStyle(color: Colors.grey[600])),
             ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                  (Set<MaterialState> states) {
-                    return Colors.white;
-                  },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      return Colors.white;
+                    },
+                  ),
                 ),
-              ),
-              onPressed: () {}, 
-              child: Icon (
-                Icons.info_outline,
-                color: Colors.grey[600]
-              )
-            )
+                onPressed: () {},
+                child: Icon(Icons.info_outline, color: Colors.grey[600]))
           ],
         ),
       ),

@@ -82,9 +82,74 @@ class ExamInstructionsWidget extends StatelessWidget {
   }
 
   String getText() {
-    return '''Exibir instruções, que variam de acordo com o modo selecionado. 
 
-É conteúdo teórico: ${mode.isTheoretical}.
-É para localizar peças: ${mode.isToFind}''';
+    if (mode.isTheoretical && mode.isToFind)
+      return '''
+
+      Para cada parte (isto é, sua localização) em cada 
+      peça física, selecione o nome da parte e em 
+      seguida clique en \"Próximo\" para submeter
+      
+      Utilize o campo "Nome da Parte" para buscar a 
+      parte desejada.
+
+      Você poderá retornar nas questões onde surgirem
+      dúvidas e se preciso alterar sua resposta.
+
+      A avaliação é concluída quando responder todas 
+      as questões e clicar em "Submeter resposta".
+
+      ''';
+
+    if (mode.isTheoretical && !mode.isToFind)
+      return '''
+      
+      Informe as partes de cada peça física do 
+      roteiro e pressione o botão "próximo" para
+      submeter.
+
+      Você poderá retornar nas questões onde surgirem
+      dúvidas e se preciso alterar sua resposta.
+
+      A avaliação é concluída quando responder todas 
+      as questões e clicar em "Submeter resposta".
+      
+      ''';
+
+
+    if (!mode.isTheoretical && mode.isToFind)
+        return '''
+      
+      Para cada conteúdo teórico informe a parte
+      correspondente e em seguida pressione o
+      botão "pŕoximo" para salvar.
+
+      Você poderá retornar nas questões onde surgirem 
+      dúvidas e se preciso alterar sua resposta.
+
+      A avaliação é concluída quando responder todas 
+      as questões e clicar em "Submeter resposta"
+
+      ''';
+
+    if (!mode.isTheoretical && !mode.isToFind)
+      return '''
+      
+      Dada a localização de cada parte, informe o seu 
+      nome e seus respectivos conteúdos teóricos
+
+      Após informar esses dados, clique em "salvar
+      resposta"
+
+      Você poderá retornar nas questões onde surgirem 
+      dúvidas e se preciso alterar sua resposta.
+
+      A avaliação é concluída quando responder todas
+      as questões e clicar em "Submeter resposta".
+
+      ''';
+      
+
+    return '''Outros...''';
   }
 }

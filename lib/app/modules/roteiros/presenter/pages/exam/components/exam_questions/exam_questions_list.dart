@@ -1,10 +1,5 @@
-import 'dart:async';
-
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam.dart';
-import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
-import 'package:app_flutter/app/modules/roteiros/domain/entities/question.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class QuestionsList extends StatelessWidget {
   final Exam exam;
@@ -21,7 +16,7 @@ class QuestionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 12,
+      itemCount: exam.questions.length,
       itemBuilder: (context, index) {
         return Card(
           color: currentQuestionIndex == index ? Colors.black45 : Colors.white,
