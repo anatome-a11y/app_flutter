@@ -191,48 +191,70 @@ class _QuestionContent extends StatelessWidget {
     final question = exam.questions[currentQuestionIndex];
 
     return Card(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Text(
-              question.part.piece.name,
-              textAlign: TextAlign.right,
-              style: TextStyle(fontSize: 15),
+      child: InkWell(
+        onTap: () {
+          print('ssss');
+          _showMyDialog(context);
+        },
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Text(
+                question.part.piece.name,
+                textAlign: TextAlign.right,
+                style: TextStyle(fontSize: 15),
+              ),
             ),
-          ),
-          Divider(
-            height: 2,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-
-          if (mode.isTheoretical && mode.isToFind) _TheoricalFindQuestion(),
-
-          if (mode.isTheoretical && !mode.isToFind)
-            _TheoricalContentQuestion(), // TheoreticalFind(question)
-
-          if (!mode.isTheoretical && mode.isToFind) _PraticallFindQuestion(),
-
-          if (!mode.isTheoretical && !mode.isToFind)
-            _PraticalContentQuestion(), // TheoreticalFind(question)
-
-          /*Text('Parte ${question.part.number}'),
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Nome da parte',
+            Divider(
+              height: 2,
             ),
-          ),
-          TextField(
-            keyboardType: TextInputType.multiline,
-            maxLines: null,
-            decoration: InputDecoration(
-              hintText: 'Conteúdos teóricos',
+            const SizedBox(
+              height: 10,
             ),
-          )*/
-        ],
+
+            if (mode.isTheoretical && mode.isToFind) _TheoricalFindQuestion(),
+
+            if (mode.isTheoretical && !mode.isToFind)
+              _TheoricalContentQuestion(), // TheoreticalFind(question)
+
+            if (!mode.isTheoretical && mode.isToFind) _PraticallFindQuestion(),
+
+            if (!mode.isTheoretical && !mode.isToFind)
+              _PraticalContentQuestion(), // TheoreticalFind(question)
+          ],
+        ),
       ),
+    );
+  }
+
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Escreva sua resposta.'),
+          content: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: TextField(
+                keyboardType: TextInputType.multiline,
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: 'Nome da parte'),
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Responder'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -299,14 +321,6 @@ class _QuestionContent extends StatelessWidget {
             ),
             const SizedBox(
               height: 5,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: TextField(
-                keyboardType: TextInputType.multiline,
-                decoration: InputDecoration(
-                    border: InputBorder.none, hintText: 'Nome da parte'),
-              ),
             ),
           ],
         ));
