@@ -191,44 +191,50 @@ class _QuestionContent extends StatelessWidget {
     final question = exam.questions[currentQuestionIndex];
 
     return Card(
-      child: InkWell(
-        onTap: () {
-          print('ssss');
-          _showMyDialog(context);
-        },
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Text(
-                question.part.piece.name,
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 15),
+      child: SingleChildScrollView(
+        child: InkWell(
+          onTap: () {
+            print('ssss');
+            _showMyDialog(context);
+          },
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: Text(
+                  question.part.piece.name,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(fontSize: 15),
+                ),
               ),
-            ),
-            Divider(
-              height: 2,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-
-            if (mode.isTheoretical && mode.isToFind) _TheoricalFindQuestion(),
-
-            if (mode.isTheoretical && !mode.isToFind)
-              _TheoricalContentQuestion(), // TheoreticalFind(question)
-
-            if (!mode.isTheoretical && mode.isToFind) _PraticallFindQuestion(),
-
-            if (!mode.isTheoretical && !mode.isToFind)
-              _PraticalContentQuestion(), // TheoreticalFind(question)
-          ],
+              Divider(
+                height: 2,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              if (mode.isTheoretical && mode.isToFind) _TheoricalFindQuestion(),
+              if (mode.isTheoretical && !mode.isToFind)
+                _TheoricalContentQuestion(),
+              if (!mode.isTheoretical && mode.isToFind)
+                _PraticallFindQuestion(),
+              if (!mode.isTheoretical && !mode.isToFind)
+                _PraticalContentQuestion(),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Future<void> _showMyDialog(BuildContext context) async {
+    var text = '';
+
+    if (mode.isTheoretical && mode.isToFind) text = 'Número da peça';
+    if (mode.isTheoretical && !mode.isToFind) text = 'Nome da parte';
+    if (!mode.isTheoretical && mode.isToFind) text = 'Número da peça';
+    if (!mode.isTheoretical && !mode.isToFind) text = 'Nome da parte';
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -240,8 +246,12 @@ class _QuestionContent extends StatelessWidget {
               padding: const EdgeInsets.all(6.0),
               child: TextField(
                 keyboardType: TextInputType.multiline,
+                maxLines: null,
+                autofocus: true,
                 decoration: InputDecoration(
-                    border: InputBorder.none, hintText: 'Nome da parte'),
+                  border: OutlineInputBorder(),
+                  hintText: text,
+                ),
               ),
             ),
           ),
@@ -268,7 +278,7 @@ class _QuestionContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: Text(
-                '${question.part.name}',
+                '''${question.part.name}''',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25, color: Colors.black45),
               ),
@@ -276,7 +286,7 @@ class _QuestionContent extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Padding(
+            /*Padding(
               padding: const EdgeInsets.all(6.0),
               child: TextField(
                 keyboardType: TextInputType.number,
@@ -286,7 +296,7 @@ class _QuestionContent extends StatelessWidget {
                   hintText: 'Número da peça',
                 ),
               ),
-            ),
+            ),*/
             Divider(
               height: 20,
             ),
@@ -314,9 +324,9 @@ class _QuestionContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: Text(
-                'arte ${question.part.number}',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 25, color: Colors.black45),
+                '''Em relação à parte ${question.part.number} informe o nome da parte localizada lateralmente a ela.''',
+                textAlign: TextAlign.justify,
+                style: TextStyle(fontSize: 18, color: Colors.black45),
               ),
             ),
             const SizedBox(
@@ -344,7 +354,7 @@ class _QuestionContent extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Padding(
+            /*Padding(
               padding: const EdgeInsets.all(6.0),
               child: TextField(
                 keyboardType: TextInputType.text,
@@ -354,7 +364,7 @@ class _QuestionContent extends StatelessWidget {
                   labelText: 'Nome da parte',
                 ),
               ),
-            ),
+            ),*/
           ],
         ));
   }
@@ -369,7 +379,7 @@ class _QuestionContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: Text(
-                '${question.part.name}',
+                'Parte ${question.part.number}',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25, color: Colors.black45),
               ),
@@ -379,14 +389,17 @@ class _QuestionContent extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(6.0),
-              child: TextField(
-                keyboardType: TextInputType.number,
-                autofocus: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Número da peça',
-                ),
+              child: Text(
+                '''${question.part.name}''',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
               ),
+            ),
+            Divider(
+              height: 20,
             ),
           ],
         ));
