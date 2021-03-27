@@ -13,7 +13,7 @@ class StartExamFormWidget extends StatefulWidget {
 
 class _StartExamFormWidgetState extends State<StartExamFormWidget> {
   bool isTheoretical = false;
-  bool isToFind = false;
+  bool isToFind = true;
 
   _StartExamFormWidgetState();
 
@@ -30,22 +30,22 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
               children: [
                 Text('Tipo de conteúdo', style: TextStyle(fontSize: 20)),
                 RadioListTile(
-                  title: const Text('Conteúdo Teórico'),
-                  value: true,
-                  groupValue: isTheoretical,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isTheoretical = true;
-                    });
-                  },
-                ),
-                RadioListTile(
                   title: const Text('Conteúdo Prático'),
                   value: false,
                   groupValue: isTheoretical,
                   onChanged: (bool? value) {
                     setState(() {
                       isTheoretical = false;
+                    });
+                  },
+                ),
+                RadioListTile(
+                  title: const Text('Conteúdo Teórico'),
+                  value: true,
+                  groupValue: isTheoretical,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isTheoretical = true;
                     });
                   },
                 ),

@@ -18,7 +18,7 @@ class ExamRepository implements IExamRepository {
       questions: [
         Question1.get(cranio, theoreticalContents),
         Question2.get(cranio, theoreticalContents),
-        for (int i = 0; i < 9; i++) Question1.get(cranio, theoreticalContents)
+        for (int i = 0; i < 4; i++) Question1.get(cranio, theoreticalContents)
       ],
     );
 

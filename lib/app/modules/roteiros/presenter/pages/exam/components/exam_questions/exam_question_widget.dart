@@ -19,13 +19,16 @@ class ExamQuestionsWidget extends StatefulWidget {
 
 class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   int currentQuestionIndex = 0;
-  int remainingTime = 120;
+  int totalTime = 120;
+  int remainingTime = 0;
 
   late Timer timer;
 
   @override
   void initState() {
     super.initState();
+
+    remainingTime = totalTime;
 
     timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
@@ -55,21 +58,24 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   void showFinishedDialog() {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: new Text("Tempo encerrado"),
-          content: new Text("Tempo de avaliação encerrado, tente novamente"),
-          actions: <Widget>[
-            // define os botões na base do dialogo
-            new ElevatedButton(
-              child: new Text("Fechar"),
-              onPressed: () {
-                print('pressed');
-                Navigator.of(context).pop();
-                Modular.to.pop();
-              },
-            ),
-          ],
+        return WillPopScope(
+          onWillPop: () => Future.value(true),
+          child: AlertDialog(
+            title: new Text("Tempo encerrado"),
+            content: new Text("Fechar"),
+            actions: <Widget>[
+              // define os botões na base do dialogo
+              new ElevatedButton(
+                child: new Text("Fechar"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Modular.to.pop();
+                },
+              ),
+            ],
+          ),
         );
       },
     );
@@ -87,6 +93,8 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
             exam: widget.exam,
             mode: widget.mode,
             currentQuestionIndex: currentQuestionIndex,
+            remainingTime: remainingTime,
+            totalTime: totalTime,
             onSelect: (index) {
               setState(() {
                 currentQuestionIndex = index;
@@ -132,14 +140,18 @@ class _Body extends StatelessWidget {
   final ExamMode mode;
   final int currentQuestionIndex;
   final Function(int index) onSelect;
+  final int remainingTime;
+  final int totalTime;
 
-  const _Body(
-      {Key? key,
-      required this.exam,
-      required this.mode,
-      required this.currentQuestionIndex,
-      required this.onSelect})
-      : super(key: key);
+  const _Body({
+    Key? key,
+    required this.exam,
+    required this.mode,
+    required this.currentQuestionIndex,
+    required this.onSelect,
+    required this.remainingTime,
+    required this.totalTime,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -154,6 +166,8 @@ class _Body extends StatelessWidget {
                   exam: exam,
                   currentQuestionIndex: currentQuestionIndex,
                   onSelect: onSelect,
+                  remainingTime: remainingTime,
+                  totalTime: totalTime,
                 ),
               ),
               const SizedBox(
@@ -230,9 +244,9 @@ class _QuestionContent extends StatelessWidget {
   Future<void> _showMyDialog(BuildContext context) async {
     var text = '';
 
-    if (mode.isTheoretical && mode.isToFind) text = 'Número da peça';
+    if (mode.isTheoretical && mode.isToFind) text = 'Número da parte';
     if (mode.isTheoretical && !mode.isToFind) text = 'Nome da parte';
-    if (!mode.isTheoretical && mode.isToFind) text = 'Número da peça';
+    if (!mode.isTheoretical && mode.isToFind) text = 'Número da parte';
     if (!mode.isTheoretical && !mode.isToFind) text = 'Nome da parte';
 
     return showDialog<void>(
@@ -242,17 +256,36 @@ class _QuestionContent extends StatelessWidget {
         return AlertDialog(
           title: Text('Escreva sua resposta.'),
           content: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: TextField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                autofocus: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: text,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: TextField(
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.next,
+                    maxLines: 1,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: text,
+                    ),
+                  ),
                 ),
-              ),
+                if (mode.isTheoretical && !mode.isToFind)
+                  Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      textInputAction: TextInputAction.newline,
+                      minLines: 3,
+                      maxLines: null,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Conteúdo teórico',
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
           actions: <Widget>[
@@ -293,7 +326,7 @@ class _QuestionContent extends StatelessWidget {
                 autofocus: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Número da peça',
+                  hintText: 'Número da parte',
                 ),
               ),
             ),*/
@@ -324,14 +357,35 @@ class _QuestionContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: Text(
-                '''Em relação à parte ${question.part.number} informe o nome da parte localizada lateralmente a ela.''',
-                textAlign: TextAlign.justify,
-                style: TextStyle(fontSize: 18, color: Colors.black45),
+                'Parte ${question.part.number}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25, color: Colors.black45),
               ),
             ),
             const SizedBox(
               height: 5,
             ),
+            // Padding(
+            //   padding: const EdgeInsets.all(6.0),
+            //   child: TextField(
+            //     keyboardType: TextInputType.text,
+            //     autofocus: true,
+            //     decoration: InputDecoration(
+            //       border: OutlineInputBorder(),
+            //       labelText: 'Nome da parte',
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.all(6.0),
+            //   child: TextField(
+            //     keyboardType: TextInputType.multiline,
+            //     decoration: InputDecoration(
+            //       border: OutlineInputBorder(),
+            //       labelText: 'Conteúdo teórico',
+            //     ),
+            //   ),
+            // ),
           ],
         ));
   }
@@ -379,7 +433,7 @@ class _QuestionContent extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: Text(
-                'Parte ${question.part.number}',
+                '${question.part.name}',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25, color: Colors.black45),
               ),
@@ -387,17 +441,17 @@ class _QuestionContent extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Text(
-                '''${question.part.name}''',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(6.0),
+            //   child: TextField(
+            //     keyboardType: TextInputType.number,
+            //     autofocus: true,
+            //     decoration: InputDecoration(
+            //       border: OutlineInputBorder(),
+            //       hintText: 'Número da parte',
+            //     ),
+            //   ),
+            // ),
             Divider(
               height: 20,
             ),
