@@ -19,10 +19,16 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Anatome App'),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text('Anatome App', style: TextStyle(color: Colors.grey[600])),
+        actionsIconTheme: IconThemeData(
+          color: Colors.grey[600]
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.settings, color: Colors.grey[600]),
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Settings()));
@@ -47,7 +53,7 @@ class AnatomeHome extends StatelessWidget {
           padding: const EdgeInsets.only(top: 28, bottom: 5),
           child: Text(
             'Você está em roteiros',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 30, color: Colors.grey[600]),
             textAlign: TextAlign.center,
           ),
         ),

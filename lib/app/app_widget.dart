@@ -17,8 +17,9 @@ class _AppWidgetState extends ModularState<AppWidget, AppStore> {
     return ScopedBuilder<AppStore, Exception, AppViewModel>(
       store: store,
       onState: (_, state) => MaterialApp(
-        title: 'Flutter Slidy',
+        title: 'Anatome',
         builder: asuka.builder,
+        debugShowCheckedModeBanner: false,
         navigatorObservers: [
           asuka.asukaHeroController,
         ],

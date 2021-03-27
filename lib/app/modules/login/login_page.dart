@@ -36,6 +36,9 @@ class _LoginState extends State<Login> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text('Anatome', style: TextStyle(color: Colors.grey[600])),
+        actionsIconTheme: IconThemeData(
+          color: Colors.grey[600]
+        ),
       ),
       backgroundColor: Colors.grey[100],
       body: Container(

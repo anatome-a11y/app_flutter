@@ -1,4 +1,5 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
+import 'package:app_flutter/app/modules/roteiros/presenter/components/bottom_nav_widget.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/pages/exam/exam_state.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/pages/exam/exam_store.dart';
 import 'package:app_flutter/app/modules/settings/settings_page.dart';
@@ -28,10 +29,16 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text(widget.title, style: TextStyle(color: Colors.grey[600])),
+        actionsIconTheme: IconThemeData(
+          color: Colors.grey[600]
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.settings, color: Colors.grey[600]),
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Settings()));
@@ -40,6 +47,7 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
         ],
       ),
       body: _Body(store: store, mode: widget.mode),
+      bottomNavigationBar: BottomNav(),
     );
   }
 }

@@ -18,22 +18,25 @@ class ScriptCardWidget extends StatelessWidget {
           onTap: () {
             Modular.to.pushNamed('/scripts');
           },
-          child: Column(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(script.name),
-                ],
-              ),
-              ListTile(
-                title: Text(script.name),
-                subtitle: Text(
-                  script.discipline,
-                  style: TextStyle(color: Colors.black.withOpacity(0.6)),
+          child: Container(
+            padding: const EdgeInsets.only(top: 10),
+            child: Column(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(script.name),
+                  ],
                 ),
-              ),
-            ],
+                ListTile(
+                  title: Text(script.name),
+                  subtitle: Text(
+                    script.discipline,
+                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

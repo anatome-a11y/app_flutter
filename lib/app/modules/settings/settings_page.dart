@@ -48,7 +48,13 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: Text("Configurações"),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text("Configurações", style: TextStyle(color: Colors.grey[600])),
+        actionsIconTheme: IconThemeData(
+          color: Colors.grey[600]
+        ),
       ),
       body: SingleChildScrollView (
         child: Container(
