@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'exam_instructions_widget.dart';
 import 'exam_loading_widget.dart';
-import 'exam_questions/exam_question_widget.dart';
+import 'exam_questions/exam_questions_widget.dart';
 
 class ExamWidget extends StatefulWidget {
   final Exam? exam;
