@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 
+import 'components/exam_questions/dialogs/exam_info_dialog_widget.dart';
 import 'components/exam_widget.dart';
 
 class ExamPage extends StatefulWidget {
@@ -23,6 +24,15 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
   @override
   void initState() {
     super.initState();
+  }
+
+  void showInfoDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => ExamInfoDialogWidget(
+        mode: widget.mode,
+      ),
+    );
   }
 
   @override
@@ -48,7 +58,14 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
         ],
       ),
       body: _Body(store: store, mode: widget.mode),
-      bottomNavigationBar: BottomNav(),
+      bottomNavigationBar: ScopedBuilder<ExamStore, Exception, ExamState>(
+        store: store,
+        onState: (context, state) {
+          return BottomNav(
+              infoButtonPressed: showInfoDialog,
+              showButtons: state is ExamContentState);
+        },
+      ),
     );
   }
 }
