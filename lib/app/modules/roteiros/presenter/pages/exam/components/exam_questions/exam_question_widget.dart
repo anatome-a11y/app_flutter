@@ -64,7 +64,7 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
           onWillPop: () => Future.value(true),
           child: AlertDialog(
             title: new Text("Tempo encerrado"),
-            content: new Text("Fechar"),
+            content: Text("Fechar"),
             actions: <Widget>[
               // define os botões na base do dialogo
               new ElevatedButton(

@@ -19,15 +19,8 @@ class ScriptCardWidget extends StatelessWidget {
             Modular.to.pushNamed('/scripts');
           },
           child: Container(
-            padding: const EdgeInsets.only(top: 10),
             child: Column(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(script.name),
-                  ],
-                ),
                 ListTile(
                   title: Text(script.name),
                   subtitle: Text(

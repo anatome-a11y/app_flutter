@@ -9,27 +9,21 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-
-  List<Widget> getSettingsGroups () {
+  List<Widget> getSettingsGroups() {
     List<Widget> content = [
       Container(
-        padding: EdgeInsets.symmetric(horizontal: 5, vertical : 10),
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               'Você está em: ',
-              style: TextStyle(
-                fontWeight: FontWeight.w500
-              ),
+              style: TextStyle(fontWeight: FontWeight.w500),
             ),
             Text(
               'Configurações',
-              style: TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.w500
-              ),
-            ) 
+              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500),
+            )
           ],
         ),
       ),
@@ -52,11 +46,12 @@ class _SettingsState extends State<Settings> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text("Configurações", style: TextStyle(color: Colors.grey[600])),
-        actionsIconTheme: IconThemeData(
-          color: Colors.grey[600]
+        iconTheme: IconThemeData(
+          color: Colors.grey[600],
         ),
+        actionsIconTheme: IconThemeData(color: Colors.grey[600]),
       ),
-      body: SingleChildScrollView (
+      body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(8),
           child: Column(

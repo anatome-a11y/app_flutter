@@ -33,9 +33,10 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(widget.title, style: TextStyle(color: Colors.grey[600])),
-        actionsIconTheme: IconThemeData(
-          color: Colors.grey[600]
+        iconTheme: IconThemeData(
+          color: Colors.grey[600],
         ),
+        actionsIconTheme: IconThemeData(color: Colors.grey[600]),
         actions: [
           IconButton(
             icon: Icon(Icons.settings, color: Colors.grey[600]),

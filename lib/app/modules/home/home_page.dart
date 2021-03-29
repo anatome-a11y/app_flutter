@@ -23,9 +23,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text('Anatome App', style: TextStyle(color: Colors.grey[600])),
-        actionsIconTheme: IconThemeData(
-          color: Colors.grey[600]
-        ),
+        actionsIconTheme: IconThemeData(color: Colors.grey[600]),
         actions: [
           IconButton(
             icon: Icon(Icons.settings, color: Colors.grey[600]),
