@@ -1,6 +1,5 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class ExamInfoDialogWidget extends StatelessWidget {
   final ExamMode mode;

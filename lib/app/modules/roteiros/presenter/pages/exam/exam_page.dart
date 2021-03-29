@@ -29,6 +29,7 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
   void showInfoDialog() {
     showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (context) => ExamInfoDialogWidget(
         mode: widget.mode,
       ),

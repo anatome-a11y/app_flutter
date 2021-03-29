@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../../../../roteiros_module.dart';
+
 class ExamTimeoutDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Modular.to.pop();
+        RoteirosModule.popUntilScriptsHomePage();
         return true;
       },
       child: AlertDialog(
@@ -21,8 +23,7 @@ class ExamTimeoutDialogWidget extends StatelessWidget {
               child: Text("OK"),
             ),
             onPressed: () {
-              Navigator.of(context).pop();
-              Modular.to.pop();
+              RoteirosModule.popUntilScriptsHomePage();
             },
           ),
         ],

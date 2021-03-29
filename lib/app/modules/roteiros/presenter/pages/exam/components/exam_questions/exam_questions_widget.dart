@@ -46,7 +46,6 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   void onTimerTick(timer) {
     setState(() {
       remainingTime--;
-      print(remainingTime);
     });
 
     if (remainingTime <= 0) {
@@ -62,6 +61,7 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   void showExamTimeoutDialog() {
     showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (context) => ExamTimeoutDialogWidget(),
     );
   }
@@ -69,6 +69,7 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   void showFinishedDialog() {
     showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (context) => FinishedExamDialogWidget(),
     );
   }

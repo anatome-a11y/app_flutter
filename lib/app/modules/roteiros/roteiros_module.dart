@@ -31,4 +31,11 @@ class RoteirosModule extends Module {
       ),
     ),
   ];
+
+  static popUntilScriptsHomePage() {
+    Modular.to.popUntil((route) {
+      final name = route.settings.name;
+      return name == '/scripts/';
+    });
+  }
 }
