@@ -65,7 +65,10 @@ class QuestionContent extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20,
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),
@@ -81,22 +84,24 @@ class QuestionContent extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: Text(
-                '''${question.part.name}''',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.black45,
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(1.0),
+            //   child: Text(
+            //     '''${question.part.name}''',
+            //     textAlign: TextAlign.center,
+            //     style: TextStyle(
+            //       fontSize: 25,
+            //       color: Colors.black45,
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 '${question.part.theoreticalContent[0]}',
-                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
               ),
             ),
             const SizedBox(

@@ -19,8 +19,8 @@ class QuestionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timePerQuestion = totalTime / exam.questions.length;
-    final timeSpent = totalTime - remainingTime;
+    // final timePerQuestion = totalTime / exam.questions.length;
+    // final timeSpent = totalTime - remainingTime;
 
     return ListView.builder(
       itemCount: exam.questions.length,
@@ -28,12 +28,12 @@ class QuestionsList extends StatelessWidget {
         Color itemColor = Colors.white;
         Color textColor = Colors.black;
 
-        final maxTimeForThisQuestion = timePerQuestion * (index + 1);
+        // final maxTimeForThisQuestion = timePerQuestion * (index + 1);
 
-        if (timeSpent >= maxTimeForThisQuestion) {
-          itemColor = Colors.red;
-          textColor = Colors.white;
-        }
+        // if (timeSpent >= maxTimeForThisQuestion) {
+        //   itemColor = Colors.red;
+        //   textColor = Colors.white;
+        // }
 
         if (currentQuestionIndex == index) {
           itemColor = Colors.black45;
