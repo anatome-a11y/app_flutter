@@ -82,74 +82,34 @@ class ExamInstructionsWidget extends StatelessWidget {
   }
 
   String getText() {
-
     if (mode.isTheoretical && mode.isToFind)
-      return '''
+      return '''Para cada conteúdo teórico informe a parte correspondente.
 
-      Para cada parte (isto é, sua localização) em cada 
-      peça física, selecione o nome da parte e em 
-      seguida clique en \"Próximo\" para submeter
-      
-      Utilize o campo "Nome da Parte" para buscar a 
-      parte desejada.
+Utilize as setas para alternar as questões, a avaliação é concluída quando todas as questões forem respondidas e clicar em “finalizar”.
 
-      Você poderá retornar nas questões onde surgirem
-      dúvidas e se preciso alterar sua resposta.
-
-      A avaliação é concluída quando responder todas 
-      as questões e clicar em "Submeter resposta".
-
-      ''';
+Gerencie bem o seu tempo e boa prova.''';
 
     if (mode.isTheoretical && !mode.isToFind)
-      return '''
-      
-      Informe as partes de cada peça física do 
-      roteiro e pressione o botão "próximo" para
-      submeter.
+      return '''Dada a localização de cada parte, informe o seu nome e seus respectivos conteúdos teóricos.
 
-      Você poderá retornar nas questões onde surgirem
-      dúvidas e se preciso alterar sua resposta.
+Utilize as setas para alternar as questões, a avaliação é concluída quando todas as questões forem respondidas e clicar em “finalizar”.
 
-      A avaliação é concluída quando responder todas 
-      as questões e clicar em "Submeter resposta".
-      
-      ''';
-
+Gerencie bem o seu tempo e boa prova.''';
 
     if (!mode.isTheoretical && mode.isToFind)
-        return '''
-      
-      Para cada conteúdo teórico informe a parte
-      correspondente e em seguida pressione o
-      botão "pŕoximo" para salvar.
+      return '''Informe as partes de cada peça física do roteiro.
 
-      Você poderá retornar nas questões onde surgirem 
-      dúvidas e se preciso alterar sua resposta.
+Utilize as setas para alternar as questões, a avaliação é concluída quando todas as questões forem respondidas e clicar em “finalizar”.
 
-      A avaliação é concluída quando responder todas 
-      as questões e clicar em "Submeter resposta"
-
-      ''';
+Gerencie bem o seu tempo e boa prova.''';
 
     if (!mode.isTheoretical && !mode.isToFind)
-      return '''
-      
-      Dada a localização de cada parte, informe o seu 
-      nome e seus respectivos conteúdos teóricos
+      return '''Para cada parte (isto é, sua localização) de cada peça física, escreva o nome da parte em questão.
 
-      Após informar esses dados, clique em "salvar
-      resposta"
+Utilize as setas para alternar as questões, a avaliação é concluída quando todas as questões forem respondidas e clicar em “finalizar”.
 
-      Você poderá retornar nas questões onde surgirem 
-      dúvidas e se preciso alterar sua resposta.
+Gerencie bem o seu tempo e boa prova.''';
 
-      A avaliação é concluída quando responder todas
-      as questões e clicar em "Submeter resposta".
-
-      ''';
-      
-
-    return '''Outros...''';
+    return '';
   }
 }
