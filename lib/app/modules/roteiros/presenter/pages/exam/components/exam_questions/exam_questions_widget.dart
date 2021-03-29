@@ -24,6 +24,7 @@ class ExamQuestionsWidget extends StatefulWidget {
 
 class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   int currentQuestionIndex = 0;
+  Map<int, List<String>> responses = {};
   int totalTime = 120;
   int remainingTime = 0;
 
@@ -106,12 +107,18 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
             currentQuestionIndex: currentQuestionIndex,
             remainingTime: remainingTime,
             totalTime: totalTime,
+            responses: responses,
             onSelect: (index) {
               setState(
                 () {
                   currentQuestionIndex = index;
                 },
               );
+            },
+            onQuestionSubmit: (responses) {
+              setState(() {
+                this.responses[currentQuestionIndex] = responses;
+              });
             },
           ),
           const SizedBox(
@@ -141,18 +148,22 @@ class _Body extends StatelessWidget {
   final Exam exam;
   final ExamMode mode;
   final int currentQuestionIndex;
+  final Map<int, List<String>> responses;
   final Function(int index) onSelect;
   final int remainingTime;
   final int totalTime;
+  final Function(List<String>) onQuestionSubmit;
 
   const _Body({
     Key? key,
     required this.exam,
     required this.mode,
     required this.currentQuestionIndex,
+    required this.responses,
     required this.onSelect,
     required this.remainingTime,
     required this.totalTime,
+    required this.onQuestionSubmit,
   }) : super(key: key);
 
   @override
@@ -180,6 +191,8 @@ class _Body extends StatelessWidget {
                   exam: exam,
                   mode: mode,
                   currentQuestionIndex: currentQuestionIndex,
+                  responses: responses[currentQuestionIndex],
+                  onQuestionSubmit: onQuestionSubmit,
                 ),
               )
             ],

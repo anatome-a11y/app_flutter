@@ -8,21 +8,31 @@ class QuestionContent extends StatelessWidget {
   final Exam exam;
   final ExamMode mode;
   final int currentQuestionIndex;
+  final List<String>? responses;
+  final Function(List<String>) onQuestionSubmit;
 
   const QuestionContent({
     Key? key,
     required this.exam,
     required this.mode,
     required this.currentQuestionIndex,
+    required this.responses,
+    required this.onQuestionSubmit,
   }) : super(key: key);
 
-  Future<void> _showResponseDialog(BuildContext context) async {
-    return showDialog<void>(
+  _showResponseDialog(BuildContext context) async {
+    showDialog<List<String>>(
       context: context,
-      builder: (context) => ExamQuestionResposeDialog(
+      useRootNavigator: false,
+      builder: (context) => ExamQuestionResponseDialog(
         mode: mode,
+        responses: responses,
       ),
-    );
+    ).then((res) {
+      if (res != null) {
+        onQuestionSubmit(res);
+      }
+    });
   }
 
   @override
@@ -57,15 +67,7 @@ class QuestionContent extends StatelessWidget {
                   _praticalFindQuestion(),
                 if (!mode.isTheoretical && !mode.isToFind)
                   _praticalContentQuestion(),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Clique para inserir a resposta',
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
+                ResponseInfo(responses: responses),
                 SizedBox(
                   height: 20,
                 ),
@@ -187,5 +189,49 @@ class QuestionContent extends StatelessWidget {
             ),
           ],
         ));
+  }
+}
+
+class ResponseInfo extends StatelessWidget {
+  const ResponseInfo({
+    Key? key,
+    required this.responses,
+  }) : super(key: key);
+
+  final List<String>? responses;
+
+  @override
+  Widget build(BuildContext context) {
+    String text = 'Clique para inserir sua resposta';
+    String responsesText = '';
+
+    if (responses != null) {
+      text = 'Clique para alterar sua resposta';
+      responsesText = responses!.reduce((value, element) => '$value\n$element');
+    }
+
+    return Column(
+      children: [
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 20,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Text(
+          responsesText,
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
+      ],
+    );
   }
 }

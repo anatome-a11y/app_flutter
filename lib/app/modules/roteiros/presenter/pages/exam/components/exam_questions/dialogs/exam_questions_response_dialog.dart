@@ -4,8 +4,13 @@ import 'package:flutter/services.dart';
 
 class ExamQuestionResponseDialog extends StatefulWidget {
   final ExamMode mode;
+  final List<String>? responses;
 
-  ExamQuestionResponseDialog({Key? key, required this.mode}) : super(key: key);
+  ExamQuestionResponseDialog({
+    Key? key,
+    required this.mode,
+    required this.responses,
+  }) : super(key: key);
 
   @override
   _ExamQuestionResponseDialogState createState() =>
@@ -14,8 +19,30 @@ class ExamQuestionResponseDialog extends StatefulWidget {
 
 class _ExamQuestionResponseDialogState
     extends State<ExamQuestionResponseDialog> {
-  final TextEditingController _field1Response = TextEditingController(text: '');
-  final TextEditingController _field2Response = TextEditingController(text: '');
+  late TextEditingController _field1Response;
+  late TextEditingController _field2Response;
+
+  @override
+  void initState() {
+    initFields();
+    super.initState();
+  }
+
+  void initFields() {
+    final responses = widget.responses;
+
+    if (responses == null) {
+      _field1Response = TextEditingController(text: '');
+      _field2Response = TextEditingController(text: '');
+      return;
+    }
+
+    _field1Response = TextEditingController(text: responses[0]);
+
+    if (responses.length == 2) {
+      _field2Response = TextEditingController(text: responses[1]);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +54,14 @@ class _ExamQuestionResponseDialogState
       text = 'Número da parte';
       keyboardType = TextInputType.number;
       inputFormatters = [FilteringTextInputFormatter.digitsOnly];
+    }
+
+    TextInputAction firstTextInputAction = TextInputAction.go;
+    Function(String)? firstTextInputSubmitFn = (value) => _submit(context);
+
+    if (widget.mode.isTheoretical && !widget.mode.isToFind) {
+      firstTextInputAction = TextInputAction.next;
+      firstTextInputSubmitFn = null;
     }
 
     return WillPopScope(
@@ -43,7 +78,7 @@ class _ExamQuestionResponseDialogState
                 padding: const EdgeInsets.all(6.0),
                 child: TextField(
                   keyboardType: keyboardType,
-                  textInputAction: TextInputAction.next,
+                  textInputAction: firstTextInputAction,
                   inputFormatters: inputFormatters,
                   maxLines: 1,
                   autofocus: true,
@@ -52,6 +87,7 @@ class _ExamQuestionResponseDialogState
                     border: OutlineInputBorder(),
                     labelText: text,
                   ),
+                  onSubmitted: firstTextInputSubmitFn,
                 ),
               ),
               if (widget.mode.isTheoretical && !widget.mode.isToFind)
@@ -93,7 +129,6 @@ class _ExamQuestionResponseDialogState
     if (widget.mode.isTheoretical && !widget.mode.isToFind) {
       responses.add(_field2Response.text);
     }
-    print(responses);
 
     Navigator.of(context).pop(responses);
   }
