@@ -4,11 +4,12 @@ import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'dialogs/exam_timeout_dialog_widget.dart';
+import 'dialogs/finished_exam_dialog_widget.dart';
 import 'exam_questions_bottom.dart';
 import 'exam_questions_content_widget.dart';
 import 'exam_questions_control_buttons.dart';
 import 'exam_questions_list.dart';
-import 'finished_exam_dialog_widget.dart';
 
 class ExamQuestionsWidget extends StatefulWidget {
   final Exam exam;
