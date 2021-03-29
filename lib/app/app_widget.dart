@@ -19,7 +19,6 @@ class _AppWidgetState extends ModularState<AppWidget, AppStore> {
       onState: (_, state) => MaterialApp(
         title: 'Anatome',
         builder: asuka.builder,
-        debugShowCheckedModeBanner: false,
         navigatorObservers: [
           asuka.asukaHeroController,
         ],
