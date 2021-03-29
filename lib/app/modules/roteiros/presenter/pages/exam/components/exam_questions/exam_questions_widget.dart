@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam.dart';
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
+import 'package:app_flutter/app/modules/settings/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../../../../../../main.dart';
 import 'dialogs/exam_timeout_dialog_widget.dart';
 import 'dialogs/finished_exam_dialog_widget.dart';
 import 'exam_questions_bottom.dart';
@@ -25,23 +27,31 @@ class ExamQuestionsWidget extends StatefulWidget {
 class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   int currentQuestionIndex = 0;
   Map<int, List<String>> responses = {};
-  int totalTime = 120;
+  late int totalTime;
   int remainingTime = 0;
 
   late Timer timer;
 
   @override
   void initState() {
+    setTimer();
     super.initState();
-
-    remainingTime = totalTime;
-    timer = Timer.periodic(Duration(seconds: 1), onTimerTick);
   }
 
   @override
   void dispose() {
     timer.cancel();
     super.dispose();
+  }
+
+  setTimer() {
+    Settings currentSettings = getIt<Settings>();
+    totalTime = widget.mode.isToFind == true
+        ? currentSettings.localizacao_teclado_tempo
+        : currentSettings.conhecimento_teclado_tempo;
+
+    remainingTime = totalTime;
+    timer = Timer.periodic(Duration(seconds: 1), onTimerTick);
   }
 
   void onTimerTick(timer) {

@@ -8,9 +8,9 @@ class InteracaoWidget extends StatefulWidget {
 }
 
 class _InteracaoState extends State<InteracaoWidget> {
-  int groupValueA = -1;
+  int groupValueA = 1;
   int resultA = -1;
-  int groupValueB = -1;
+  int groupValueB = 2;
   int resultB = -1;
   int tempoLimiteVoz = 30;
   int tempoLimiteTeclado = 40;
@@ -21,6 +21,15 @@ class _InteracaoState extends State<InteracaoWidget> {
   bool isConfigProf = false;
 
   GetIt getIt = GetIt.instance;
+
+  @override
+  void initState() {
+    Settings currentSettings = getIt<Settings>();
+    tempoLimiteTeclado = currentSettings.conhecimento_teclado_tempo;
+    tempoLimiteLocTeclado = currentSettings.localizacao_teclado_tempo;
+
+    super.initState();
+  }
 
   void onChangeA(int? value) {
     setState(() {
@@ -92,94 +101,6 @@ class _InteracaoState extends State<InteracaoWidget> {
                 color: Colors.grey[200],
                 child: Text('Interação'),
               ),
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Text('Conhecimento'),
-              ),
-              Container(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    width: double.infinity,
-                    child: Text("Tempo limite",
-                        style: TextStyle(
-                          color: Colors.blue,
-                        )),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 5.0, left: 10.0, right: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Radio(
-                                value: 0,
-                                groupValue: groupValueA,
-                                onChanged: onChangeA),
-                            Text('Voz')
-                          ],
-                        ),
-                        Text(tempoLimiteVoz.toString())
-                      ],
-                    ),
-                  ),
-                  Slider(
-                      onChanged: (double value) {
-                        setState(() {
-                          tempoLimiteVoz = value.toInt();
-                          Settings currentSettings = getIt<Settings>();
-                          currentSettings.conhecimento_voz_tempo =
-                              tempoLimiteVoz;
-                        });
-                      },
-                      value: tempoLimiteVoz.toDouble(),
-                      min: 5.0,
-                      max: 180.0,
-                      divisions: (180 - 5),
-                      label: "$tempoLimiteVoz"),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 5.0, left: 10.0, right: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Radio(
-                                value: 1,
-                                groupValue: groupValueA,
-                                onChanged: onChangeA),
-                            Text('Teclado')
-                          ],
-                        ),
-                        Text(tempoLimiteTeclado.toString())
-                      ],
-                    ),
-                  ),
-                  Slider(
-                      onChanged: (double value) {
-                        setState(() {
-                          tempoLimiteTeclado = value.toInt();
-                          Settings currentSettings = getIt<Settings>();
-                          currentSettings.conhecimento_teclado_tempo =
-                              tempoLimiteTeclado;
-                        });
-                      },
-                      value: tempoLimiteTeclado.toDouble(),
-                      min: 5.0,
-                      max: 180.0,
-                      divisions: (180 - 5),
-                      label: "$tempoLimiteTeclado")
-                ],
-              )),
-              Divider(thickness: 2.0, color: Colors.grey[200]),
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -292,6 +213,13 @@ class _InteracaoState extends State<InteracaoWidget> {
                           Settings currentSettings = getIt<Settings>();
                           currentSettings.localizacao_teclado_tempo =
                               tempoLimiteLocTeclado;
+
+                          print(
+                              'tempo conhecimento: ${currentSettings.conhecimento_teclado_tempo}');
+                          // 40
+                          print(
+                              'tempo localização: ${currentSettings.localizacao_teclado_tempo}');
+                          // 30
                         });
                       },
                       value: tempoLimiteLocTeclado.toDouble(),
@@ -299,6 +227,101 @@ class _InteracaoState extends State<InteracaoWidget> {
                       max: 180.0,
                       divisions: (180 - 5),
                       label: "$tempoLimiteLocTeclado")
+                ],
+              )),
+              Divider(thickness: 2.0, color: Colors.grey[200]),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Text('Conhecimento'),
+              ),
+              Container(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    width: double.infinity,
+                    child: Text("Tempo limite",
+                        style: TextStyle(
+                          color: Colors.blue,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 5.0, left: 10.0, right: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Radio(
+                                value: 0,
+                                groupValue: groupValueA,
+                                onChanged: onChangeA),
+                            Text('Voz')
+                          ],
+                        ),
+                        Text(tempoLimiteVoz.toString())
+                      ],
+                    ),
+                  ),
+                  Slider(
+                      onChanged: (double value) {
+                        setState(() {
+                          tempoLimiteVoz = value.toInt();
+                          Settings currentSettings = getIt<Settings>();
+                          currentSettings.conhecimento_voz_tempo =
+                              tempoLimiteVoz;
+                        });
+                      },
+                      value: tempoLimiteVoz.toDouble(),
+                      min: 5.0,
+                      max: 180.0,
+                      divisions: (180 - 5),
+                      label: "$tempoLimiteVoz"),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 5.0, left: 10.0, right: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Radio(
+                                value: 1,
+                                groupValue: groupValueA,
+                                onChanged: onChangeA),
+                            Text('Teclado')
+                          ],
+                        ),
+                        Text(tempoLimiteTeclado.toString())
+                      ],
+                    ),
+                  ),
+                  Slider(
+                      onChanged: (double value) {
+                        setState(() {
+                          tempoLimiteTeclado = value.toInt();
+                          Settings currentSettings = getIt<Settings>();
+                          currentSettings.conhecimento_teclado_tempo =
+                              tempoLimiteTeclado;
+
+                          print(
+                              'tempo conhecimento: ${currentSettings.conhecimento_teclado_tempo}');
+                          // 40
+                          print(
+                              'tempo localização: ${currentSettings.localizacao_teclado_tempo}');
+                          // 30
+                        });
+                      },
+                      value: tempoLimiteTeclado.toDouble(),
+                      min: 5.0,
+                      max: 180.0,
+                      divisions: (180 - 5),
+                      label: "$tempoLimiteTeclado")
                 ],
               )),
               Divider(thickness: 2.0, color: Colors.grey[200]),
