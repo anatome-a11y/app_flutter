@@ -10,6 +10,36 @@ class FinishedExamDialogWidget extends StatelessWidget {
         return true;
       },
       child: AlertDialog(
+        title: Text("Exame finalizado"),
+        content: Text(
+          "Você finalizou seu exame. Boa sorte!",
+        ),
+        actions: <Widget>[
+          // define os botões na base do dialogo
+          new TextButton(
+            child: Center(
+              child: Text("OK"),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+              Modular.to.pop();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ExamTimeoutDialogWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        Modular.to.pop();
+        return true;
+      },
+      child: AlertDialog(
         title: Text("Tempo encerrado"),
         content: Text(
           "Seu tempo para realizar o exame acabou. Tente novamente.",

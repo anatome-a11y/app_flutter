@@ -55,7 +55,14 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   }
 
   void onTimeEnd() {
-    showFinishedDialog();
+    showExamTimeoutDialog();
+  }
+
+  void showExamTimeoutDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => ExamTimeoutDialogWidget(),
+    );
   }
 
   void showFinishedDialog() {
@@ -81,7 +88,9 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
     });
   }
 
-  void onFinishClick() {}
+  void onFinishClick() {
+    showFinishedDialog();
+  }
 
   @override
   Widget build(BuildContext context) {
