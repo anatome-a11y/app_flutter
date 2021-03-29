@@ -54,7 +54,7 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
                 ),
                 Text('Sentido de localização', style: TextStyle(fontSize: 20)),
                 RadioListTile(
-                  title: const Text('Conteúdo -> Localização'),
+                  title: const Text('Conteúdo → Localização'),
                   value: true,
                   groupValue: isToFind,
                   onChanged: (bool? value) {
@@ -64,7 +64,7 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
                   },
                 ),
                 RadioListTile(
-                  title: const Text('Localização -> Conteúdo'),
+                  title: const Text('Localização → Conteúdo'),
                   value: false,
                   groupValue: isToFind,
                   onChanged: (bool? value) {

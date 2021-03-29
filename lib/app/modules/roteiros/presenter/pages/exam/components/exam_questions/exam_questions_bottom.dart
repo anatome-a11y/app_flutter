@@ -15,28 +15,9 @@ class Bottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 190,
-      child: SingleChildScrollView(
-        child: Card(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                contentPadding: const EdgeInsets.only(left: 16),
-                title: Text(
-                  'Resumo',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ),
-              Divider(),
-              _cardContent()
-            ],
-          ),
-        ),
+    return SingleChildScrollView(
+      child: Card(
+        child: _cardContent(),
       ),
     );
   }
