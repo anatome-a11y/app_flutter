@@ -4,6 +4,7 @@ import 'package:app_flutter/app/modules/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
+import '../../app_store.dart';
 import 'home_store.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,18 +16,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeStore> {
+  AppStore appStore = Modular.get<AppStore>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text('Anatome App', style: TextStyle(color: Colors.grey[600])),
-        actionsIconTheme: IconThemeData(color: Colors.grey[600]),
+        title: Text('Anatome App'),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings, color: Colors.grey[600]),
+            icon: Icon(Icons.lightbulb_outline),
+            onPressed: () {
+              appStore.switchTheme();
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.settings),
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Settings()));

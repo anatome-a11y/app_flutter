@@ -36,8 +36,7 @@ class _LoginState extends State<Login> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text('Anatome', style: TextStyle(color: Colors.grey[600])),
+        title: Text('Anatome'),
         actionsIconTheme: IconThemeData(color: Colors.grey[600]),
       ),
       backgroundColor: Colors.grey[100],
@@ -113,7 +112,7 @@ class _LoginState extends State<Login> {
           Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.pink,
+              color: Theme.of(context).accentColor,
               borderRadius: BorderRadius.circular(60),
             ),
             child: Icon(

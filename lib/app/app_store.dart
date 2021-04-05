@@ -12,4 +12,10 @@ class AppStore extends NotifierStore<Exception, AppViewModel> {
       AppViewModel(isDarkTheme: isDarkTheme),
     );
   }
+
+  void switchTheme() {
+    update(
+      AppViewModel(isDarkTheme: !state.isDarkTheme),
+    );
+  }
 }

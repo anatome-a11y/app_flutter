@@ -16,20 +16,35 @@ class _AppWidgetState extends ModularState<AppWidget, AppStore> {
   Widget build(BuildContext context) {
     return ScopedBuilder<AppStore, Exception, AppViewModel>(
       store: store,
-      onState: (_, state) => MaterialApp(
-        title: 'Anatome',
-        builder: asuka.builder,
-        navigatorObservers: [
-          asuka.asukaHeroController,
-        ],
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.comfortable,
-          scaffoldBackgroundColor: Colors.grey.shade300,
-          // platform: TargetPlatform.iOS,
-          brightness: state.isDarkTheme ? Brightness.dark : Brightness.light,
-        ),
-      ).modular(),
+      onState: (_, state) => _App(
+        appViewModel: state,
+      ),
     );
+  }
+}
+
+class _App extends StatelessWidget {
+  final AppViewModel appViewModel;
+
+  const _App({Key? key, required this.appViewModel}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Anatome',
+      builder: asuka.builder,
+      navigatorObservers: [
+        asuka.asukaHeroController,
+      ],
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        accentColor: Colors.pink,
+        visualDensity: VisualDensity.comfortable,
+        // platform: TargetPlatform.iOS,
+        brightness:
+            appViewModel.isDarkTheme ? Brightness.dark : Brightness.light,
+      ),
+    ).modular();
   }
 }
