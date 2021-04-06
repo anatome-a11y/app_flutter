@@ -52,8 +52,8 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
           context: context,
           useRootNavigator: false,
           builder: (context) => AlertDialog(
-            title: Text('a.'),
-            content: Text('bbb'),
+            title: Text('Confimação.'),
+            content: Text('Confirma sua saída?'),
             actions: <Widget>[
               TextButton(
                 child: Text('CANCELAR'),
