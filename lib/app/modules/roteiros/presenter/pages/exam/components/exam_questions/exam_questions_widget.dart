@@ -116,6 +116,11 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
       ExamStore examStore = Modular.get<ExamStore>();
       examStore.setExamAsFinished();
     }
+
+    if (userWasRespondedOneQuestion()) {
+      ExamStore examStore = Modular.get<ExamStore>();
+      examStore.setExamAsInitied();
+    }
   }
 
   bool userWasRespondedAllQuestions() {
@@ -123,6 +128,12 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
     final respondedQuestions = this.responses.keys.length;
 
     return totalQuestions == respondedQuestions;
+  }
+
+  bool userWasRespondedOneQuestion() {
+    final respondedQuestions = this.responses.keys.length;
+
+    return respondedQuestions > 0;
   }
 
   @override

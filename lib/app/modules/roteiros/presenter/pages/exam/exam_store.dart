@@ -15,9 +15,18 @@ class ExamStore extends NotifierStore<Exception, ExamState> {
           (value) => ExamContentState(
             exam: value,
             examFinished: false,
+            examInitied: false,
           ),
         ),
       ),
+    );
+  }
+
+  void setExamAsInitied() {
+    final _state = state as ExamContentState;
+    update(
+      ExamContentState(
+          exam: _state.exam, examFinished: false, examInitied: true),
     );
   }
 
@@ -28,6 +37,7 @@ class ExamStore extends NotifierStore<Exception, ExamState> {
       ExamContentState(
         exam: _state.exam,
         examFinished: true,
+        examInitied: true,
       ),
     );
   }

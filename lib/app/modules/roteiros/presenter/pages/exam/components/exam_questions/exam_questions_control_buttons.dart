@@ -22,7 +22,7 @@ class ControlButtons extends StatelessWidget {
   void showOnConfirmFinish() {
     print('request user to confirm exam finish');
 
-    // onFinish();
+    //onFinish();
   }
 
   @override
@@ -50,7 +50,7 @@ class ControlButtons extends StatelessWidget {
         Expanded(
           flex: 3,
           child: ElevatedButton(
-            onPressed: examState.examFinished ? onFinish : showOnConfirmFinish,
+            onPressed: examState.examInitied ? onFinish : showOnConfirmFinish,
             child: Container(
               height: 50,
               child: Center(
