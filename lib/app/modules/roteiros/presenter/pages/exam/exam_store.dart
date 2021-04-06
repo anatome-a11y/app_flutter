@@ -12,8 +12,22 @@ class ExamStore extends NotifierStore<Exception, ExamState> {
     await executeEither(
       () => initExam().then(
         (value) => value.map(
-          (value) => ExamContentState(value),
+          (value) => ExamContentState(
+            exam: value,
+            examFinished: false,
+          ),
         ),
+      ),
+    );
+  }
+
+  void setExamAsFinished() {
+    final _state = state as ExamContentState;
+
+    update(
+      ExamContentState(
+        exam: _state.exam,
+        examFinished: true,
       ),
     );
   }

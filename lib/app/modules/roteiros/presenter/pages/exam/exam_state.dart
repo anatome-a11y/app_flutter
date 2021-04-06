@@ -6,6 +6,7 @@ class ExamEmptyState implements ExamState {}
 
 class ExamContentState implements ExamState {
   final Exam exam;
+  final bool examFinished;
 
-  ExamContentState(this.exam);
+  ExamContentState({required this.exam, required this.examFinished});
 }

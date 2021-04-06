@@ -38,34 +38,64 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text(widget.title, style: TextStyle(color: Colors.grey[600])),
-        iconTheme: IconThemeData(
-          color: Colors.grey[600],
+    return WillPopScope(
+      onWillPop: () async {
+        if (store.state is ExamContentState) {
+          final state = store.state as ExamContentState;
+
+          if (state.examFinished) {
+            return true;
+          }
+        }
+
+        final result = await showDialog<bool>(
+          context: context,
+          useRootNavigator: false,
+          builder: (context) => AlertDialog(
+            title: Text('a.'),
+            content: Text('bbb'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('CANCELAR'),
+                onPressed: () => Navigator.of(context).pop(false),
+              ),
+              TextButton(
+                child: Text('CONFIRMAR'),
+                onPressed: () => Navigator.of(context).pop(true),
+              ),
+            ],
+          ),
+        );
+
+        if (result == null) {
+          return false;
+        }
+
+        return result;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(widget.title),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Settings()));
+              },
+            )
+          ],
         ),
-        actionsIconTheme: IconThemeData(color: Colors.grey[600]),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.settings, color: Colors.grey[600]),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Settings()));
-            },
-          )
-        ],
-      ),
-      body: _Body(store: store, mode: widget.mode),
-      bottomNavigationBar: ScopedBuilder<ExamStore, Exception, ExamState>(
-        store: store,
-        onState: (context, state) {
-          return BottomNav(
-              infoButtonPressed: showInfoDialog,
-              showButtons: state is ExamContentState);
-        },
+        body: _Body(store: store, mode: widget.mode),
+        bottomNavigationBar: ScopedBuilder<ExamStore, Exception, ExamState>(
+          store: store,
+          onState: (context, state) {
+            return BottomNav(
+                infoButtonPressed: showInfoDialog,
+                showButtons: state is ExamContentState);
+          },
+        ),
       ),
     );
   }

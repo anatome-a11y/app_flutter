@@ -1,5 +1,9 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../exam_state.dart';
+import '../../exam_store.dart';
 
 class ControlButtons extends StatelessWidget {
   final Exam exam;
@@ -15,8 +19,17 @@ class ControlButtons extends StatelessWidget {
     required this.onFinish,
   }) : super(key: key);
 
+  void showOnConfirmFinish() {
+    print('request user to confirm exam finish');
+
+    // onFinish();
+  }
+
   @override
   Widget build(BuildContext context) {
+    ExamStore examStore = Modular.get<ExamStore>();
+    final examState = examStore.state as ExamContentState;
+
     return Row(
       children: [
         Expanded(
@@ -37,7 +50,7 @@ class ControlButtons extends StatelessWidget {
         Expanded(
           flex: 3,
           child: ElevatedButton(
-            onPressed: onFinish,
+            onPressed: examState.examFinished ? onFinish : showOnConfirmFinish,
             child: Container(
               height: 50,
               child: Center(

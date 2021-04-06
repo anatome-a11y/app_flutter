@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../../../../main.dart';
+import '../../exam_store.dart';
 import 'dialogs/exam_timeout_dialog_widget.dart';
 import 'dialogs/finished_exam_dialog_widget.dart';
 import 'exam_questions_bottom.dart';
@@ -102,7 +103,26 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   }
 
   void onFinishClick() {
+    //// Finaliza exame
     showFinishedDialog();
+  }
+
+  void handleQuestionSubmit(responses) {
+    setState(() {
+      this.responses[currentQuestionIndex] = responses;
+    });
+
+    if (userWasRespondedAllQuestions()) {
+      ExamStore examStore = Modular.get<ExamStore>();
+      examStore.setExamAsFinished();
+    }
+  }
+
+  bool userWasRespondedAllQuestions() {
+    final totalQuestions = widget.exam.questions.length;
+    final respondedQuestions = this.responses.keys.length;
+
+    return totalQuestions == respondedQuestions;
   }
 
   @override
@@ -125,11 +145,7 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
                 },
               );
             },
-            onQuestionSubmit: (responses) {
-              setState(() {
-                this.responses[currentQuestionIndex] = responses;
-              });
-            },
+            onQuestionSubmit: handleQuestionSubmit,
           ),
           const SizedBox(
             height: 10,

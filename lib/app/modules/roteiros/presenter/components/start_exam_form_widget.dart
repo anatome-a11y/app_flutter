@@ -23,6 +23,7 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Card(
+          elevation: 6,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
