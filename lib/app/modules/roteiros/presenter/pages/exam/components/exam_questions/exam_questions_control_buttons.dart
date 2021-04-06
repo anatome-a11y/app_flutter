@@ -10,6 +10,8 @@ class ControlButtons extends StatelessWidget {
   final Function() onPrev;
   final Function() onNext;
   final Function() onFinish;
+  final Function() onExitBeforeFinish;
+  final Function() onBeforeInit;
 
   const ControlButtons({
     Key? key,
@@ -17,15 +19,9 @@ class ControlButtons extends StatelessWidget {
     required this.onPrev,
     required this.onNext,
     required this.onFinish,
+    required this.onExitBeforeFinish,
+    required this.onBeforeInit,
   }) : super(key: key);
-
-  void showOnConfirmFinish() {
-    print('request user to confirm exam finish');
-  }
-
-  void showOnConfirmBeforeFinish() {
-    print('request user to confirm exam finish before');
-  }
 
   void finalizarTeste() {}
 
@@ -57,8 +53,8 @@ class ControlButtons extends StatelessWidget {
             onPressed: examState.examInitied
                 ? examState.examFinished
                     ? onFinish
-                    : showOnConfirmBeforeFinish
-                : showOnConfirmFinish,
+                    : onExitBeforeFinish
+                : onBeforeInit,
             child: Container(
               height: 50,
               child: Center(

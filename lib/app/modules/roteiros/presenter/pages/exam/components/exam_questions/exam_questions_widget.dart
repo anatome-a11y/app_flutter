@@ -86,6 +86,22 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
     );
   }
 
+  void showExitBeforeFinishedDialog() {
+    showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (context) => ExitBeforeFinishDialogWidget(),
+    );
+  }
+
+  void showExitBeforeInitDialog() {
+    showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (context) => ExitBeforeInitDialogWidget(),
+    );
+  }
+
   void onPrevClick() {
     setState(() {
       if (currentQuestionIndex > 0) {
@@ -105,6 +121,14 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
   void onFinishClick() {
     //// Finaliza exame
     showFinishedDialog();
+  }
+
+  void onFinishClickBeforeFinish() {
+    showExitBeforeFinishedDialog();
+  }
+
+  void onFinishClickBeforeInit() {
+    showExitBeforeInitDialog();
   }
 
   void handleQuestionSubmit(responses) {
@@ -166,6 +190,8 @@ class _ExamQuestionsWidgetState extends State<ExamQuestionsWidget> {
             onPrev: onPrevClick,
             onNext: onNextClick,
             onFinish: onFinishClick,
+            onBeforeInit: onFinishClickBeforeInit,
+            onExitBeforeFinish: onFinishClickBeforeFinish,
           ),
           const SizedBox(
             height: 10,
