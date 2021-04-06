@@ -21,9 +21,13 @@ class ControlButtons extends StatelessWidget {
 
   void showOnConfirmFinish() {
     print('request user to confirm exam finish');
-
-    //onFinish();
   }
+
+  void showOnConfirmBeforeFinish() {
+    print('request user to confirm exam finish before');
+  }
+
+  void finalizarTeste() {}
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +54,11 @@ class ControlButtons extends StatelessWidget {
         Expanded(
           flex: 3,
           child: ElevatedButton(
-            onPressed: examState.examInitied ? onFinish : showOnConfirmFinish,
+            onPressed: examState.examInitied
+                ? examState.examFinished
+                    ? onFinish
+                    : showOnConfirmBeforeFinish
+                : showOnConfirmFinish,
             child: Container(
               height: 50,
               child: Center(

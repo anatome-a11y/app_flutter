@@ -26,7 +26,9 @@ class ExamStore extends NotifierStore<Exception, ExamState> {
     final _state = state as ExamContentState;
     update(
       ExamContentState(
-          exam: _state.exam, examFinished: false, examInitied: true),
+          exam: _state.exam,
+          examFinished: _state.examFinished,
+          examInitied: true),
     );
   }
 
@@ -37,7 +39,7 @@ class ExamStore extends NotifierStore<Exception, ExamState> {
       ExamContentState(
         exam: _state.exam,
         examFinished: true,
-        examInitied: true,
+        examInitied: _state.examInitied,
       ),
     );
   }
