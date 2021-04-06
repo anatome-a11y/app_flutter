@@ -6,16 +6,18 @@ class QuestionsList extends StatelessWidget {
   final int currentQuestionIndex;
   final int remainingTime;
   final int totalTime;
+  final Map<int, List<String>> responses;
   final Function(int index) onSelect;
 
-  QuestionsList({
-    Key? key,
-    required this.exam,
-    required this.currentQuestionIndex,
-    required this.onSelect,
-    required this.remainingTime,
-    required this.totalTime,
-  }) : super(key: key);
+  QuestionsList(
+      {Key? key,
+      required this.exam,
+      required this.currentQuestionIndex,
+      required this.onSelect,
+      required this.remainingTime,
+      required this.totalTime,
+      required this.responses})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,11 @@ class QuestionsList extends StatelessWidget {
         //   itemColor = Colors.red;
         //   textColor = Colors.white;
         // }
+
+        if (responses[index] != null) {
+          itemColor = Colors.green;
+          textColor = Colors.white;
+        }
 
         if (currentQuestionIndex == index) {
           itemColor = Colors.black45;

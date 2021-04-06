@@ -207,6 +207,7 @@ class _Body extends StatelessWidget {
                   onSelect: onSelect,
                   remainingTime: remainingTime,
                   totalTime: totalTime,
+                  responses: responses,
                 ),
               ),
               const SizedBox(
