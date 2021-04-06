@@ -12,7 +12,7 @@ class FinishedExamDialogWidget extends StatelessWidget {
       child: AlertDialog(
         title: Text("Exame finalizado"),
         content: Text(
-          "Você finalizou seu exame. Boa sorte!",
+          "Você respondeu todas as perguntas. Confirma suas respostas?",
         ),
         actions: <Widget>[
           new TextButton(
