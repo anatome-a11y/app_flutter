@@ -1,5 +1,8 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
+import 'package:app_flutter/app/modules/settings/settings_model.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../../../main.dart';
 
 class ExamInstructionsWidget extends StatelessWidget {
   final ExamMode mode;
@@ -28,6 +31,11 @@ class ExamInstructionsWidget extends StatelessWidget {
   }
 
   Widget _content() {
+    Settings currentSettings = getIt<Settings>();
+    final totalTime = mode.isToFind == true
+        ? currentSettings.localizacao_teclado_tempo
+        : currentSettings.conhecimento_teclado_tempo;
+
     return Column(
       children: [
         Padding(
@@ -50,7 +58,7 @@ class ExamInstructionsWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    mode.getText(),
+                    mode.getText() + '\n\n tempo: $totalTime',
                     style: TextStyle(fontSize: 18),
                     textAlign: TextAlign.start,
                   ),
