@@ -39,15 +39,23 @@ class ExitBeforeFinishDialogWidget extends StatelessWidget {
         return true;
       },
       child: AlertDialog(
-        title: Text("Saíndo sem acabar."),
+        title: Text("Exame Incompleto."),
         content: Text(
           "Você possui questões não finalizadas. Confima sua sua saída?",
         ),
         actions: <Widget>[
+          new TextButton(
+            child: Center(
+              child: Text("CANCELAR"),
+            ),
+            onPressed: () {
+              Navigator.pop(context, true);
+            },
+          ),
           // define os botões na base do dialogo
           new TextButton(
             child: Center(
-              child: Text("OK"),
+              child: Text("CONFIRMAR"),
             ),
             onPressed: () {
               RoteirosModule.popUntilScriptsHomePage();
