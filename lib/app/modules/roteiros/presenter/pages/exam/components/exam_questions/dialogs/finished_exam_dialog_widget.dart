@@ -6,7 +6,6 @@ class FinishedExamDialogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        RoteirosModule.popUntilScriptsHomePage();
         return true;
       },
       child: AlertDialog(
@@ -43,7 +42,6 @@ class ExitBeforeFinishDialogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        RoteirosModule.popUntilScriptsHomePage();
         return true;
       },
       child: AlertDialog(
@@ -80,7 +78,6 @@ class ExitBeforeInitDialogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        RoteirosModule.popUntilScriptsHomePage();
         return true;
       },
       child: AlertDialog(
