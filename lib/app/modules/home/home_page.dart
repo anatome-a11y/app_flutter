@@ -1,4 +1,5 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/script.dart';
+import 'package:app_flutter/app/modules/roteiros/presenter/components/bottom_nav_widget.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/components/script_card_widget.dart';
 import 'package:app_flutter/app/modules/settings/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
         title: Text('Anatome App'),
         actions: [
           IconButton(
@@ -45,6 +44,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         store: store,
         onState: (_, counter) => AnatomeHome(),
       ),
+      bottomNavigationBar: BottomNav(showButtons: false),
     );
   }
 }
@@ -58,7 +58,7 @@ class AnatomeHome extends StatelessWidget {
           padding: const EdgeInsets.only(top: 28, bottom: 5),
           child: Text(
             'Você está em roteiros',
-            style: TextStyle(fontSize: 30, color: Colors.grey[600]),
+            style: TextStyle(fontSize: 30),
             textAlign: TextAlign.center,
           ),
         ),
@@ -66,13 +66,10 @@ class AnatomeHome extends StatelessWidget {
           constraints: BoxConstraints(maxHeight: 200),
           child: ListView.builder(
             itemCount: 1,
-            itemBuilder: (context, i) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ScriptCardWidget(
-                script: Script(
-                  name: 'Sistema esquelético',
-                  discipline: 'Biomedicina',
-                ),
+            itemBuilder: (context, i) => ScriptCardWidget(
+              script: Script(
+                name: 'Sistema esquelético',
+                discipline: 'Biomedicina',
               ),
             ),
           ),

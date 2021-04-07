@@ -24,58 +24,62 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
       children: [
         Card(
           elevation: 6,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Tipo de conteúdo', style: TextStyle(fontSize: 20)),
-                RadioListTile(
-                  title: const Text('Conteúdo Prático'),
-                  value: false,
-                  groupValue: isTheoretical,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isTheoretical = false;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  title: const Text('Conteúdo Teórico'),
-                  value: true,
-                  groupValue: isTheoretical,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isTheoretical = true;
-                    });
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text('Sentido de localização', style: TextStyle(fontSize: 20)),
-                RadioListTile(
-                  title: const Text('Conteúdo → Localização'),
-                  value: true,
-                  groupValue: isToFind,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isToFind = true;
-                    });
-                  },
-                ),
-                RadioListTile(
-                  title: const Text('Localização → Conteúdo'),
-                  value: false,
-                  groupValue: isToFind,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isToFind = false;
-                    });
-                  },
-                ),
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text('Tipo de conteúdo', style: TextStyle(fontSize: 20)),
+              ),
+              RadioListTile(
+                title: const Text('Conteúdo Prático'),
+                value: false,
+                groupValue: isTheoretical,
+                onChanged: (bool? value) {
+                  setState(() {
+                    isTheoretical = false;
+                  });
+                },
+              ),
+              RadioListTile(
+                title: const Text('Conteúdo Teórico'),
+                value: true,
+                groupValue: isTheoretical,
+                onChanged: (bool? value) {
+                  setState(() {
+                    isTheoretical = true;
+                  });
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text('Sentido de localização',
+                    style: TextStyle(fontSize: 20)),
+              ),
+              RadioListTile(
+                title: const Text('Conteúdo → Localização'),
+                value: true,
+                groupValue: isToFind,
+                onChanged: (bool? value) {
+                  setState(() {
+                    isToFind = true;
+                  });
+                },
+              ),
+              RadioListTile(
+                title: const Text('Localização → Conteúdo'),
+                value: false,
+                groupValue: isToFind,
+                onChanged: (bool? value) {
+                  setState(() {
+                    isToFind = false;
+                  });
+                },
+              ),
+            ],
           ),
         ),
         SizedBox(

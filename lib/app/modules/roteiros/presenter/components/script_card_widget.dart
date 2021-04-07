@@ -10,6 +10,15 @@ class ScriptCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(Icons.book),
+      title: Text(script.name),
+      subtitle: Text(script.discipline),
+      onTap: () {
+        Modular.to.pushNamed('/scripts');
+      },
+    );
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: Card(

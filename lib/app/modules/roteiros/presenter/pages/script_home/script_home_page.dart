@@ -1,3 +1,4 @@
+import 'package:app_flutter/app/modules/roteiros/presenter/components/bottom_nav_widget.dart';
 import 'package:app_flutter/app/modules/roteiros/presenter/components/start_exam_form_widget.dart';
 import 'package:app_flutter/app/modules/settings/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -21,17 +22,10 @@ class ScriptHomePageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: Text(widget.title, style: TextStyle(color: Colors.grey[600])),
-        iconTheme: IconThemeData(
-          color: Colors.grey[600],
-        ),
-        actionsIconTheme: IconThemeData(color: Colors.grey[600]),
+        title: Text(widget.title),
         actions: [
           IconButton(
-            icon: Icon(Icons.settings, color: Colors.grey[600]),
+            icon: Icon(Icons.settings),
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Settings()));
@@ -47,6 +41,7 @@ class ScriptHomePageState
           child: CircularProgressIndicator(),
         ),
       ),
+      bottomNavigationBar: BottomNav(showButtons: false),
     );
   }
 }

@@ -58,8 +58,10 @@ class ExamInstructionsWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    mode.getText() + '\n\n tempo: $totalTime',
-                    style: TextStyle(fontSize: 18),
+                    '''${mode.getText()} \n\n Tempo para realização do exame: $totalTime segundos''',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
                     textAlign: TextAlign.start,
                   ),
                 )

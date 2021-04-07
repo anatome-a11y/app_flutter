@@ -15,41 +15,64 @@ class BottomNav extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (showButtons)
-            ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
-                      return Colors.white;
-                    },
-                  ),
-                ),
-                onPressed: () {},
-                child: Icon(Icons.replay_outlined, color: Colors.grey[600])),
+          if (showButtons) _RetryButton(),
           if (!showButtons) Expanded(child: Container()),
-          Text(
-            'Versão 0.1.4',
-            style: TextStyle(
-              color: Colors.grey[600],
-            ),
-          ),
+          Text('Versão 0.1.4'),
           if (showButtons)
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                  (Set<MaterialState> states) {
-                    return Colors.white;
-                  },
-                ),
-              ),
-              onPressed: infoButtonPressed,
-              child: Icon(
-                Icons.info_outline,
-                color: Colors.grey[600],
-              ),
-            ),
+            _InformationButton(infoButtonPressed: infoButtonPressed),
           if (!showButtons) Expanded(child: Container()),
         ],
+      ),
+    );
+  }
+}
+
+class _InformationButton extends StatelessWidget {
+  const _InformationButton({
+    Key? key,
+    required this.infoButtonPressed,
+  }) : super(key: key);
+
+  final Function()? infoButtonPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) {
+            return Colors.white;
+          },
+        ),
+      ),
+      onPressed: infoButtonPressed,
+      child: Icon(
+        Icons.info_outline,
+        color: Colors.grey[600],
+      ),
+    );
+  }
+}
+
+class _RetryButton extends StatelessWidget {
+  const _RetryButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) {
+            return Colors.white;
+          },
+        ),
+      ),
+      onPressed: () {},
+      child: Icon(
+        Icons.replay_outlined,
+        color: Colors.grey[600],
       ),
     );
   }
