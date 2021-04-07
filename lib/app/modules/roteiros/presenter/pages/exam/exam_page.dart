@@ -26,16 +26,6 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
     super.initState();
   }
 
-  void showInfoDialog() {
-    showDialog(
-      context: context,
-      useRootNavigator: false,
-      builder: (context) => ExamInfoDialogWidget(
-        mode: widget.mode,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -74,31 +64,59 @@ class ExamPageState extends ModularState<ExamPage, ExamStore> {
         return result;
       },
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(widget.title),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Settings()));
-              },
-            )
-          ],
-        ),
+        appBar: _AppBar(store: store, widget: widget),
         body: _Body(store: store, mode: widget.mode),
-        bottomNavigationBar: ScopedBuilder<ExamStore, Exception, ExamState>(
+        bottomNavigationBar: _BottomNavigationBar(
           store: store,
-          onState: (context, state) {
-            return BottomNav(
-                infoButtonPressed: showInfoDialog,
-                showButtons: state is ExamContentState);
-          },
+          mode: widget.mode,
         ),
       ),
     );
   }
+}
+
+class _AppBar extends StatelessWidget with PreferredSizeWidget {
+  const _AppBar({
+    Key? key,
+    required this.store,
+    required this.widget,
+  }) : super(key: key);
+
+  final ExamStore store;
+  final ExamPage widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return ScopedBuilder<ExamStore, Exception, ExamState>(
+      store: store,
+      onState: (context, state) => AppBar(
+        automaticallyImplyLeading: false,
+        leading: state is ExamContentState
+            ? null
+            : IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: Modular.to.maybePop,
+              ),
+        title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Settings(),
+                ),
+              );
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size(double.infinity, 56);
 }
 
 class _Body extends StatelessWidget {
@@ -138,6 +156,40 @@ class _Content extends StatelessWidget {
           onInitExam: () {
             store.setExam();
           },
+        );
+      },
+    );
+  }
+}
+
+class _BottomNavigationBar extends StatelessWidget {
+  const _BottomNavigationBar({
+    Key? key,
+    required this.store,
+    required this.mode,
+  }) : super(key: key);
+
+  final ExamStore store;
+  final ExamMode mode;
+
+  void showInfoDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      useRootNavigator: false,
+      builder: (context) => ExamInfoDialogWidget(
+        mode: mode,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScopedBuilder<ExamStore, Exception, ExamState>(
+      store: store,
+      onState: (context, state) {
+        return BottomNav(
+          infoButtonPressed: () => showInfoDialog(context),
+          showButtons: state is ExamContentState,
         );
       },
     );
