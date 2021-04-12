@@ -8,7 +8,7 @@ abstract class Question3 {
     return Question(
       part: AnatomyPart(
         piece: piece,
-        number: 3,
+        number: 1,
         name: 'Occipital',
         theoreticalContent: [
           'Osso ímpar, classificado como laminar e pneumático, tem um aspecto arredondado, localizado na região anterosuperior do crânio.',
