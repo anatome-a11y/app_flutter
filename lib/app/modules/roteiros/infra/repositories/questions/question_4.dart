@@ -8,10 +8,10 @@ abstract class Question4 {
     return Question(
       part: AnatomyPart(
         piece: piece,
-        number: 8,
-        name: 'Zigomático',
+        number: 11,
+        name: 'Forame Infra-Orbitário',
         theoreticalContent: [
-          'Osso par, irregular. Localiza-se na região da bochecha e é o mais proeminente da face.',
+          'Serve como uma passagem para os vasos e nervo infra-orbitais'
         ],
         partRelations: [],
       ),

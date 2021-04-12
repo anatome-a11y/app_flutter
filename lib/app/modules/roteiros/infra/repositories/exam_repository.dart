@@ -1,11 +1,11 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/anatomy_piece.dart';
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam.dart';
-import 'package:app_flutter/app/modules/roteiros/infra/repositories/questions/question_1.dart';
-import 'package:app_flutter/app/modules/roteiros/infra/repositories/questions/question_2.dart';
 
 import '../../domain/repositories/exam_repository_interface.dart';
 import 'package:dartz/dartz.dart';
 
+import 'questions/question_1.dart';
+import 'questions/question_2.dart';
 import 'questions/question_3.dart';
 import 'questions/question_4.dart';
 

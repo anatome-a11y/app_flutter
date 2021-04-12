@@ -3,16 +3,15 @@ import 'package:app_flutter/app/modules/roteiros/domain/entities/anatomy_part_re
 import 'package:app_flutter/app/modules/roteiros/domain/entities/anatomy_piece.dart';
 import 'package:app_flutter/app/modules/roteiros/domain/entities/question.dart';
 
-abstract class Question3 {
+abstract class Question4 {
   static Question get(AnatomyPiece piece, List<String> theoreticalContents) {
     return Question(
       part: AnatomyPart(
         piece: piece,
-        number: 3,
-        name: 'Occipital',
+        number: 8,
+        name: 'Zigomático',
         theoreticalContent: [
-          'Osso ímpar, classificado como laminar e pneumático, tem um aspecto arredondado, localizado na região anterosuperior do crânio.',
-          'É um dos ossos que formam a calota craniana.'
+          'Osso par, irregular. Localiza-se na região da bochecha e é o mais proeminente da face.',
         ],
         partRelations: [],
       ),

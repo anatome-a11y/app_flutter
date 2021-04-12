@@ -10,7 +10,10 @@ abstract class Question1 {
         piece: piece,
         number: 9,
         name: 'Maxila',
-        theoreticalContent: ['Suportam os dentes superiores'],
+        theoreticalContent: [
+          'Osso par, irregular e pneumático. Articula-se com o nasal, palatino, etmoide, frontal, zigomático, lacrimal, vômer e concha nasal inferior.',
+          'Suportam os dentes superiores e forma uma parte do palato, da cavidade nasal e da órbita ocular.'
+        ],
         partRelations: [
           AnatomyPartRelation(
             relatedPart: AnatomyPart(

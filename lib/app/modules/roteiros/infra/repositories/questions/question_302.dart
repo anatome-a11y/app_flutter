@@ -8,11 +8,10 @@ abstract class Question3 {
     return Question(
       part: AnatomyPart(
         piece: piece,
-        number: 3,
-        name: 'Occipital',
+        number: 2,
+        name: 'Parietal',
         theoreticalContent: [
-          'Osso ímpar, classificado como laminar e pneumático, tem um aspecto arredondado, localizado na região anterosuperior do crânio.',
-          'É um dos ossos que formam a calota craniana.'
+          'Osso par, laminar, localizado nas laterais superiores do crânio.',
         ],
         partRelations: [],
       ),

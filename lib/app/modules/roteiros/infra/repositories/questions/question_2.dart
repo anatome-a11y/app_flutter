@@ -8,10 +8,11 @@ abstract class Question2 {
     return Question(
       part: AnatomyPart(
         piece: piece,
-        number: 1,
-        name: 'Frontal',
+        number: 5,
+        name: 'Etmoide',
         theoreticalContent: [
-          'Osso ímpar, classificado como laminar e pneumático, tem um aspecto arredondado, localizado na região anterosuperior do crânio.',
+          'Osso ímpar, irregular e pneumático, leve e esponjoso. Sua altura, comprimento e largura se equivalem harmoniosamente, não havendo predomínio significativo de nenhuma destas dimensões. Este osso localiza-se na base do crânio, mais concretamente, na zona anterior medial.',
+          'Possui diversos clivos (orifícios) e canais olfativos, por onde passam estruturas importantes para a percepção olfativa. '
         ],
         partRelations: [],
       ),
