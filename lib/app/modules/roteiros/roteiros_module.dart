@@ -13,7 +13,6 @@ class RoteirosModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton((i) => ExamRepository()),
     Bind.lazySingleton((i) => ExamStore()),
-    Bind.lazySingleton((i) => ExamStore()),
     Bind.lazySingleton((i) => ScriptHomeStore()),
     Bind.lazySingleton((i) => InitExam(i.get<ExamRepository>())),
   ];
