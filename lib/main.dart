@@ -9,13 +9,7 @@ import 'app/app_widget.dart';
 final getIt = GetIt.instance;
 
 void main() {
-
   getIt.registerSingleton<Settings>(Settings());
 
-  runApp(
-    ModularApp(
-      module: AppModule(), 
-      child: AppWidget()
-    )
-  );
+  runApp(ModularApp(module: AppModule(), child: AppWidget()));
 }

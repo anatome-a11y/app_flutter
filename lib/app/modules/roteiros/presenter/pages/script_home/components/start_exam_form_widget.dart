@@ -1,11 +1,11 @@
 import 'package:app_flutter/app/modules/roteiros/domain/entities/exam_mode.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import '../script_home_store.dart';
 
 class StartExamFormWidget extends StatefulWidget {
-  final Function(ExamMode mode) initExam;
-
-  const StartExamFormWidget({Key? key, required this.initExam})
-      : super(key: key);
+  const StartExamFormWidget({Key? key}) : super(key: key);
 
   @override
   _StartExamFormWidgetState createState() => _StartExamFormWidgetState();
@@ -89,28 +89,49 @@ class _StartExamFormWidgetState extends State<StartExamFormWidget> {
           child: Container(),
         ),
         Center(
-          child: ElevatedButton(
-            onPressed: () {
-              widget.initExam(
-                ExamMode(
-                  isTheoretical: isTheoretical,
-                  isToFind: isToFind,
-                ),
-              );
-            },
-            child: Container(
-              width: double.infinity,
-              height: 50,
-              child: Center(
-                child: Text(
-                  'Iniciar exame',
-                  style: TextStyle(fontSize: 22),
-                ),
-              ),
-            ),
+          child: StartExamButton(
+            isTheoretical: isTheoretical,
+            isToFind: isToFind,
           ),
         ),
       ],
+    );
+  }
+}
+
+class StartExamButton extends StatelessWidget {
+  const StartExamButton({
+    Key? key,
+    required this.isTheoretical,
+    required this.isToFind,
+  }) : super(key: key);
+
+  final bool isTheoretical;
+  final bool isToFind;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        ScriptHomeStore store = Modular.get<ScriptHomeStore>();
+
+        store.initExam(
+          ExamMode(
+            isTheoretical: isTheoretical,
+            isToFind: isToFind,
+          ),
+        );
+      },
+      child: Container(
+        width: double.infinity,
+        height: 50,
+        child: Center(
+          child: Text(
+            'Iniciar exame',
+            style: TextStyle(fontSize: 22),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:app_flutter/app/modules/roteiros/presenter/components/bottom_nav_widget.dart';
-import 'package:app_flutter/app/modules/roteiros/presenter/components/start_exam_form_widget.dart';
+import 'package:app_flutter/app/modules/roteiros/presenter/pages/script_home/components/start_exam_form_widget.dart';
 import 'package:app_flutter/app/modules/settings/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -95,9 +95,7 @@ class _Content extends StatelessWidget {
             height: 40,
           ),
           Expanded(
-            child: StartExamFormWidget(initExam: (mode) {
-              store.initExam(mode);
-            }),
+            child: StartExamFormWidget(),
           )
         ],
       ),
